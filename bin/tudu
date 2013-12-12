@@ -1,0 +1,71 @@
+#!/usr/bin/env ruby
+# encoding: utf-8
+
+require 'tudu/version'
+require 'tudu_core'
+require "thor"
+
+module Tudu
+  #= Tudu CLI
+  class CLI < Thor
+    class_option :help, :type => :boolean, :aliases => '-h', :desc => 'help message.'
+    class_option :version, :type => :boolean, :desc => 'version'
+
+    desc "init", "generate todos,doings,dones files"
+    def init
+      Tudu::Core.new.init
+    end
+
+    desc "add", "add tasks to todos file"
+    def add(*args)
+      puts args
+      Tudu::Core.new.add *args
+    end
+
+    desc "remove", "remove tasks from todos,doings,dones file"
+    def remove(*args)
+      Tudu::Core.new.remove *args
+    end
+
+    desc "choose", "choose tasks from todos to doings file"
+    def choose(*args)
+      Tudu::Core.new.choose args.first
+    end
+
+    desc "done", "done tasks from doings to dones file. and choose task from todos's top task to doings"
+    def done
+      Tudu::Core.new.done
+    end
+
+    desc "tasks", "tasks search tasks from todos,doings,dones file. no args => get all tasks. set search word args, you get hit tasks"
+    def tasks(*args)
+      puts Tudu::Core.new.tasks args.first
+    end
+
+    desc "todos", "todos search tasks from todos file. no args => get all tasks. set search word args, you get hit tasks"
+    def todos(*args)
+      puts Tudu::Core.new.todos args.first
+    end
+
+    desc "doings", "doings search tasks from doings file. no args => get all tasks. set search word args, you get hit tasks"
+    def doings(*args)
+      puts Tudu::Core.new.doings args.first
+    end
+
+    desc "now", "now search tasks from doings file. no args => get all tasks. set search word args, you get hit tasks"
+    def now(*args)
+      puts Tudu::Core.new.now args.first
+    end
+
+    desc "dones", "dones search tasks from dones file. no args => get all tasks. set search word args, you get hit tasks"
+    def dones(*args)
+      puts Tudu::Core.new.dones args.first
+    end
+
+    desc "version", "version"
+    def version
+      p Tudu::VERSION
+    end
+  end
+end
+Tudu::CLI.start(ARGV)

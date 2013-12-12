@@ -103,7 +103,7 @@ hoge
 ~~~
 $ tudu add one two three
 $ tudu choose one
-$ done
+$ tudu done
 $ tudu todos
 three
 $ tudu doings
@@ -118,7 +118,7 @@ one
 ~~~
 $ tudu add one two three
 $ tudu choose one
-$ done
+$ tudu done
 $ tudu tasks
 three
 two

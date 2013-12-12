@@ -36,6 +36,7 @@ Or install it yourself as:
 ### init
 * generate todos,doings,dones emptyfile
 * generate Tudufile template
+
 ~~~
 $ tudu init
 $ tree
@@ -49,6 +50,7 @@ $ tree
 
 ### add task to todos file.
 * single add
+
 ~~~
 $ tudu add hoge
 $ tudu todos
@@ -56,6 +58,7 @@ hoge
 ~~~
 
 * multi add
+
 ~~~
 $ tudu add hoge foo bar
 $ tudu todos
@@ -66,6 +69,7 @@ bar
 
 ### remove task to todos file.
 * single remove
+
 ~~~
 $ tudu add hoge hige
 $ tudu remove hoge
@@ -74,6 +78,7 @@ hige
 ~~~
 
 * multi remove
+
 ~~~
 $ tudu add hoge foo bar hige
 $ tudu remove hoge foo bar
@@ -83,6 +88,7 @@ hige
 
 ### choose task from todo to doing
 * choose
+
 ~~~
 $ tudu add hoge
 $ tudu choose hoge
@@ -93,6 +99,7 @@ hoge
 
 ### done task from doing to done and from first todos to doing
 * done
+
 ~~~
 $ tudu add one two three
 $ tudu choose one
@@ -107,6 +114,7 @@ one
 
 ### tasks show all tasks from [todos, doings, dones].
 * tudu tasks
+
 ~~~
 $ tudu add one two three
 $ tudu choose one
@@ -119,6 +127,7 @@ one
 
 ### show specific tasks from [todos, doings, dones].
 * tudu tasks search_word
+
 ~~~
 $ tudu add test tester testest
 $ tudu search teste
@@ -128,6 +137,7 @@ testest
 
 ### todos show all todos tasks.
 * tudu todos
+
 ~~~
 $ tudu add hoge hige
 $ tudu choose hoge
@@ -142,6 +152,7 @@ same as 'tasks search_word'
 You can use doings command's alias 'now'
 
 * tudu doings(or now)
+
 ~~~
 $ tudu add hoge
 $ tudu choose hoge
@@ -154,6 +165,7 @@ same as 'tasks search_word' case
 
 ### dones show all dones tasks.
 * tudu dones
+
 ~~~
 $ tudu add hoge hige
 $ tudu choose hoge

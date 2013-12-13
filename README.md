@@ -97,9 +97,9 @@ $ tudu doings
 hoge
 ~~~
 
+### choose no args. from first todo to doing
 * choose
 
-### choose no args. from first todo to doing
 ~~~
 $ tudu add hoge hige
 $ tudu choose
@@ -124,7 +124,7 @@ $ tudu done
 one
 ~~~
 
-### done. from doing to done and from first todos to doing. after, if there is no todos, show celebration message.
+### done. from doing to done and from first todos to doing. after, if there is no todos and doings, show celebration message.
 * done
 
 ~~~

@@ -86,8 +86,8 @@ $ tudu todos
 hige
 ~~~
 
-### choose task from todo to doing
-* choose
+### choose task name. from todo to doing
+* choose task_name
 
 ~~~
 $ tudu add hoge
@@ -97,7 +97,19 @@ $ tudu doings
 hoge
 ~~~
 
-### done task from doing to done and from first todos to doing
+* choose
+
+### choose no args. from first todo to doing
+~~~
+$ tudu add hoge hige
+$ tudu choose
+$ tudu todos
+hige
+$ tudu doings
+hoge
+~~~
+
+### done. from doing to done and from first todos to doing
 * done
 
 ~~~
@@ -110,6 +122,22 @@ $ tudu doings
 two
 $ tudu done
 one
+~~~
+
+### done. from doing to done and from first todos to doing. after, if there is no todos, show celebration message.
+* done
+
+~~~
+$ tudu add one two
+$ tudu choose one
+$ tudu done
+$ tudu done
+All Tasks Finish!!
+$ tudu todos
+$ tudu doings
+$ tudu done
+one
+two
 ~~~
 
 ### tasks show all tasks from [todos, doings, dones].
@@ -185,6 +213,8 @@ if you want to do other operation, edit [todos, doings, dones] directly.
 it's only plain text, so you can edit freely.
 
 ## History
+* version 0.0.2 : after execute 'done', if there is no todos and doings, display celebration message.
+* version 0.0.2 : if 'choose' no args. choose first tudu.
 * version 0.0.1 : first release.
 
 ## Contributing

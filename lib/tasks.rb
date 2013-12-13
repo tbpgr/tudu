@@ -87,7 +87,7 @@ module Tudu
       def add(*task_names)
         task_names.each do |task_name|
           if find_tasks(task_name)
-            puts "#{task_name} is already exists."
+            puts "#{task_name} is already exists.";
             next
           end
           File.open(TUDU_TODOS_FILE_PATH, "a:UTF-8") {|f|f.puts task_name}
@@ -116,23 +116,24 @@ module Tudu
       #=== Params
       #- task_name : target task name
       def choose(task_name)
+        if get_todos.size == 0
+          puts "todos is empty."
+          return
+        end
         if get_doings.size > 0
           puts "before choose, you must done current doings."
           return
         end
-
+        task_name = get_first_todo_name_if_nil_or_empty task_name
         task = find_tasks(task_name)
-
         if task.nil?
           puts "#{task_name} not exists"
           return
         end
-
         unless task.todo?
           puts "#{task_name} is not exists in todos. #{task_name} in #{task.type}"
           return
         end
-
         remove task_name
         File.open(TUDU_DOINGS_FILE_PATH, "w:UTF-8") {|f|f.puts task_name}
         puts "complete add doings '#{task_name}'"
@@ -207,6 +208,10 @@ module Tudu
       end
 
       private
+      def get_first_todo_name_if_nil_or_empty(task_name)
+        (task_name.nil? || task_name.empty?) ? get_todos.first.name : task_name
+      end
+
       def get_each_tasks(type)
         tasks = []
         get_tasks_from_file(type).each {|task|tasks << Tasks.new(type, task)}
@@ -225,7 +230,8 @@ module Tudu
 
       def remove_task(tasks, task_name, file_path)
         tasks.delete(task_name)
-        File.open(file_path, "w:UTF-8") {|wf|wf.puts tasks.join("\n")}
+        contents = tasks.size == 0 ? "" : tasks.join("\n") + "\n"
+        File.open(file_path, "w:UTF-8") {|wf|wf.print contents}
         puts "complete remove todo '#{task_name}' from #{file_path}"
       end
 
@@ -242,7 +248,11 @@ module Tudu
 
       def todos_to_doings
         _todos = get_todos
-        return if _todos.size == 0
+        if _todos.size == 0
+          puts "All Tasks Finish!!" if get_doings.size == 0
+          return
+        end
+
         deleted_todos = _todos.dup
         deleted_todos.delete_at 0
         File.open(TUDU_TODOS_FILE_PATH, "w:UTF-8") do |f|
@@ -271,9 +281,7 @@ module Tudu
 
     def ==(other)
       if self.name == other.name
-        if self.type == other.type
-          return true
-        end
+        return true if self.type == other.type
       end
       false
     end

@@ -487,6 +487,43 @@ describe Tudu::Tasks do
           Tudu::Tasks.new("dones", "task3"),
         ]
       },
+      {
+        case_no: 5,
+        case_title: "task exists, empty args",
+        type: "todos",
+        texts: ["task1", "task2", "task3"],
+        choose: "",
+        expected: [
+          Tudu::Tasks.new("todos", "task2"),
+          Tudu::Tasks.new("todos", "task3"),
+          Tudu::Tasks.new("doings", "task1"),
+        ]
+      },
+      {
+        case_no: 6,
+        case_title: "task exists, nil args",
+        type: "todos",
+        texts: ["task1", "task2", "task3"],
+        choose: nil,
+        expected: [
+          Tudu::Tasks.new("todos", "task2"),
+          Tudu::Tasks.new("todos", "task3"),
+          Tudu::Tasks.new("doings", "task1"),
+        ]
+      },
+      {
+        case_no: 7,
+        case_title: "todos not exists, empty args",
+        type: "doings",
+        texts: ["task1", "task2", "task3"],
+        choose: nil,
+        expected: [
+          Tudu::Tasks.new("doings", "task1"),
+          Tudu::Tasks.new("doings", "task2"),
+          Tudu::Tasks.new("doings", "task3"),
+        ]
+      },
+
     ]
 
     cases.each do |c|
@@ -562,7 +599,7 @@ describe Tudu::Tasks do
           # -- given --
           Tudu::Core.new.init
           Tudu::Tasks.add *c[:task_names]
-          Tudu::Tasks.choose c[:choose]
+          Tudu::Tasks.choose c[:choose] unless c[:choose].empty?
 
           # -- when --
           Tudu::Tasks.done

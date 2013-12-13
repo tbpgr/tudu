@@ -215,7 +215,6 @@ describe Tudu::Core do
         search_word: "task_name2_",
         expected: ["task_name2_1", "task_name2_2"]
       },
-      #  TODO: add doing, done mix case. after implements choose, done method
     ]
 
     cases.each do |c|
@@ -465,10 +464,6 @@ describe Tudu::Core do
         expected_todos: "task_name2\ntask_name3\n",
         expected_doings: "task_name1\n"
       },
-      # doingにデータがあるケース
-      # すでにdoingのケース
-      # すでにdoneのケース
-      # 存在しないケース
     ]
 
     cases.each do |c|
@@ -545,7 +540,7 @@ describe Tudu::Core do
           tudu_core = Tudu::Core.new
           tudu_core.init
           tudu_core.add c[:task_names1], c[:task_names2], c[:task_names3]
-          tudu_core.choose c[:choose]
+          tudu_core.choose c[:choose] unless c[:choose].empty?
 
           # -- when --
           tudu_core.done

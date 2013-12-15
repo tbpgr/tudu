@@ -145,7 +145,6 @@ describe Tudu::Core do
         task_names2: nil,
         task_names3: nil,
       },
-      #  TODO: add doing, done mix case. after implements choose, done method
     ]
 
     cases.each do |c|
@@ -215,6 +214,25 @@ describe Tudu::Core do
         search_word: "task_name2_",
         expected: ["task_name2_1", "task_name2_2"]
       },
+      {
+        case_no: 4,
+        case_title: "[todos, dosings, dones] all tasks with category option",
+        task_names1: "task_name1",
+        task_names2: "task_name2",
+        task_names3: "task_name3",
+        search_word: nil,
+        options: {:category => true},
+        expected: [
+          "========TODOS========", 
+          "task_name1\ntask_name2\ntask_name3", 
+          "", 
+          "========DOINGS========", 
+          "", 
+          "", 
+          "========DONES========", 
+          ""
+        ]
+      },
     ]
 
     cases.each do |c|
@@ -228,7 +246,7 @@ describe Tudu::Core do
           tudu_core.add c[:task_names1], c[:task_names2], c[:task_names3], c[:task_names4]
 
           # -- when --
-          actual = tudu_core.tasks c[:search_word]
+          actual = tudu_core.tasks c[:search_word], c[:options]
 
           # -- then --
           expect(actual).to eq(c[:expected])

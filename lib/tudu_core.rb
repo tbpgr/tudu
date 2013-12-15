@@ -44,8 +44,10 @@ module Tudu
     #== search tasks
     #=== Params
     #- search_word : search word. enable regexp.
-    def tasks(search_word)
-      Tudu::Tasks.filter_tasks(Tudu::Tasks.get_tasks, search_word).map(&:name)
+    #- options : options.
+    def tasks(search_word, options)
+      tasks = Tudu::Tasks.filter_tasks(Tudu::Tasks.get_tasks, search_word).map(&:name)
+      (!options.nil? and options[:category]) ? categorized_tasks(tasks, search_word) : tasks
     end
 
     #== search todos
@@ -67,6 +69,20 @@ module Tudu
     #- search_word : search word. enable regexp.
     def dones(search_word)
       Tudu::Tasks.filter_tasks(Tudu::Tasks.get_dones, search_word).map(&:name)
+    end
+
+    def categorized_tasks(tasks, search_word)
+      ret = []
+      tasks = Tudu::Tasks.filter_tasks(Tudu::Tasks.get_tasks, search_word)
+      ret << "========TODOS========"
+      ret << tasks.select {|task|task.type == Tudu::Tasks::TUDU_TODOS_FILE}.map(&:name).join("\n")
+      ret << ""
+      ret << "========DOINGS========"
+      ret << tasks.select {|task|task.type == Tudu::Tasks::TUDU_DOINGS_FILE}.map(&:name).join("\n")
+      ret << ""
+      ret << "========DONES========"
+      ret << tasks.select {|task|task.type == Tudu::Tasks::TUDU_DONES_FILE}.map(&:name).join("\n")
+      ret
     end
 
     alias :now :doings

@@ -38,8 +38,9 @@ module Tudu
     end
 
     desc "tasks", "tasks search tasks from todos,doings,dones file. no args => get all tasks. set search word args, you get hit tasks"
+    option :category, :type => :boolean, :aliases => '-c', :desc => "show categorized tasks"
     def tasks(*args)
-      puts Tudu::Core.new.tasks args.first
+      puts Tudu::Core.new.tasks args.first, options
     end
 
     desc "todos", "todos search tasks from todos file. no args => get all tasks. set search word args, you get hit tasks"

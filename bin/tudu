@@ -33,34 +33,41 @@ module Tudu
     end
 
     desc "done", "done tasks from doings to dones file. and choose task from todos's top task to doings"
+    option :progress, :type => :boolean, :aliases => '-p', :desc => "display tasks progress"
     def done
       Tudu::Core.new.done
+      progress if options[:progress]
     end
 
-    desc "tasks", "tasks search tasks from todos,doings,dones file. no args => get all tasks. set search word args, you get hit tasks"
-    option :category, :type => :boolean, :aliases => '-c', :desc => "show categorized tasks"
+    desc "tasks", "search tasks from todos,doings,dones file. no args => get all tasks. set search word args, you get hit tasks"
+    option :category, :type => :boolean, :aliases => '-c', :desc => "display categorized tasks"
     def tasks(*args)
       puts Tudu::Core.new.tasks args.first, options
     end
 
-    desc "todos", "todos search tasks from todos file. no args => get all tasks. set search word args, you get hit tasks"
+    desc "todos", "search tasks from todos file. no args => get all tasks. set search word args, you get hit tasks"
     def todos(*args)
       puts Tudu::Core.new.todos args.first
     end
 
-    desc "doings", "doings search tasks from doings file. no args => get all tasks. set search word args, you get hit tasks"
+    desc "doings", "search tasks from doings file. no args => get all tasks. set search word args, you get hit tasks"
     def doings(*args)
       puts Tudu::Core.new.doings args.first
     end
 
-    desc "now", "now search tasks from doings file. no args => get all tasks. set search word args, you get hit tasks"
+    desc "now", "search tasks from doings file. no args => get all tasks. set search word args, you get hit tasks"
     def now(*args)
       puts Tudu::Core.new.now args.first
     end
 
-    desc "dones", "dones search tasks from dones file. no args => get all tasks. set search word args, you get hit tasks"
+    desc "dones", "search tasks from dones file. no args => get all tasks. set search word args, you get hit tasks"
     def dones(*args)
       puts Tudu::Core.new.dones args.first
+    end
+
+    desc "progress", "display tasks progress"
+    def progress
+      puts Tudu::Core.new.progress
     end
 
     desc "version", "version"

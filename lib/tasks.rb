@@ -207,6 +207,21 @@ module Tudu
         tasks.select {|task|task.name == task_name}.first
       end
 
+      #== display tasks progress
+      #=== Returns
+      # return progress
+      def progress
+        total_count = get_tasks.size
+        dones_count = get_dones.size
+        percent = total_count == 0 ? 0 : (dones_count.to_f / total_count.to_f * 100).round
+        prefix = "#{dones_count}/#{total_count}|"
+        done_bar = "="*(percent/10)
+        rest_bar = " "*(10-(percent/10))
+        progress_bar = "#{done_bar}>#{rest_bar}"
+        sufix = "|#{percent}%"
+        "#{prefix}#{progress_bar}#{sufix}"
+      end
+
       private
       def get_first_todo_name_if_nil_or_empty(task_name)
         (task_name.nil? || task_name.empty?) ? get_todos.first.name : task_name

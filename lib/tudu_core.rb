@@ -71,6 +71,13 @@ module Tudu
       Tudu::Tasks.filter_tasks(Tudu::Tasks.get_dones, search_word).map(&:name)
     end
 
+    #== display tasks progress
+    #=== Returns
+    # return progress
+    def progress
+      Tudu::Tasks.progress
+    end
+
     def categorized_tasks(tasks, search_word)
       ret = []
       tasks = Tudu::Tasks.filter_tasks(Tudu::Tasks.get_tasks, search_word)

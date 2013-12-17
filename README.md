@@ -140,6 +140,16 @@ one
 two
 ~~~
 
+### done. from doing to done and from first todos to doing with progress option.
+* done -p
+
+~~~
+$ tudu add one two three
+$ tudu choose one
+$ tudu done -p
+1/3|===>       |33%
+~~~
+
 ### tasks show all tasks from [todos, doings, dones].
 * tudu tasks
 
@@ -225,13 +235,25 @@ hoge
 ### dones 'search word' show specific dones tasks.
 same as 'tasks search_word' case
 
+### progress show tasks progress.
+* tudu progress
+
+~~~
+$ tudu add a b c
+$ tudu choose a
+$ tudu done
+$ tudu progress
+1/3|===>       |33%
+~~~
+
 ### Notes
 if you want to do other operation, edit [todos, doings, dones] directly.
 
 it's only plain text, so you can edit freely.
 
 ## History
-* version 0.0.3 : add categorized option to tasks.
+* version 0.0.4 : add 'progress'. add progress option to 'done'.
+* version 0.0.3 : add categorized option to 'tasks'.
 * version 0.0.2 : after execute 'done', if there is no todos and doings, display celebration message.
 * version 0.0.2 : if 'choose' no args. choose first tudu.
 * version 0.0.1 : first release.

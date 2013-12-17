@@ -796,4 +796,66 @@ describe Tudu::Tasks do
       end
     end
   end
+
+  context :progress do
+    cases = [
+      {
+        case_no: 1,
+        case_title: "display progress",
+        todos: ["task5", "task6"],
+        doings: ["task3", "task4"],
+        dones: ["task1", "task2"],
+        expected: "2/6|===>       |33%",
+      },
+      {
+        case_no: 2,
+        case_title: "display none progress",
+        todos: ["task3", "task4"],
+        doings: ["task1", "task2"],
+        dones: [],
+        expected: "0/4|>          |0%",
+      },
+      {
+        case_no: 3,
+        case_title: "display complete progress",
+        todos: [],
+        doings: [],
+        dones: ["task1", "task2"],
+        expected: "2/2|==========>|100%",
+      },
+    ]
+
+    cases.each do |c|
+      it "|case_no=#{c[:case_no]}|case_title=#{c[:case_title]}" do
+        begin
+          case_before c
+
+          # -- given --
+          # nothing
+
+          # -- when --
+          actual = Tudu::Tasks.progress
+
+          # -- then --
+          ret = expect(actual).to eq(c[:expected])
+        ensure
+          case_after c
+        end
+      end
+
+      def case_before(c)
+        # implement each case before
+        Tudu::Core.new.init
+        File.open("./#{Tudu::Tasks::TUDU_DIR}/todos", "w") {|f|f.puts c[:todos].join("\n")}
+        File.open("./#{Tudu::Tasks::TUDU_DIR}/doings", "w") {|f|f.puts c[:doings].join("\n")}
+        File.open("./#{Tudu::Tasks::TUDU_DIR}/dones", "w") {|f|f.puts c[:dones].join("\n")}
+      end
+
+      def case_after(c)
+        # implement each case after
+        return unless File.exists? Tudu::Tasks::TUDU_DIR
+        FileUtils.rm_rf(Tudu::Tasks::TUDU_DIR)
+      end
+    end
+  end
 end

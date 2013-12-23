@@ -594,7 +594,7 @@ describe Tudu::Tasks do
 
           # -- given --
           Tudu::Core.new.init
-          Tudu::Tasks.add *c[:task_names]
+          Tudu::Tasks.add(*c[:task_names])
           Tudu::Tasks.choose c[:choose] unless c[:choose].empty?
 
           # -- when --
@@ -726,10 +726,10 @@ describe Tudu::Tasks do
 
           # -- given --
           Tudu::Core.new.init
-          Tudu::Tasks.add *c[:add_tasks]
+          Tudu::Tasks.add(*c[:add_tasks])
 
           # -- when --
-          Tudu::Tasks.remove *c[:remove_tasks]
+          Tudu::Tasks.remove(*c[:remove_tasks])
 
           # -- then --
           actual = Tudu::Tasks.get_tasks

@@ -106,24 +106,12 @@ module Tudu
       # === Params
       #- task_name : target task name
       def choose(task_name)
-        if get_todos.size == 0
-          puts 'todos is empty.'
-          return
-        end
-        if get_doings.size > 0
-          puts 'before choose, you must done current doings.'
-          return
-        end
+        return if when_choose_no_todos?
+        return unless when_choose_no_doings?
         task_name = get_first_todo_name_if_nil_or_empty task_name
         task = find_tasks(task_name)
-        if task.nil?
-          puts "#{task_name} not exists"
-          return
-        end
-        unless task.todo?
-          puts "#{task_name} is not exists in todos. #{task_name} in #{task.type}"
-          return
-        end
+        return if when_choose_no_task?(task, task_name)
+        return unless when_choose_type_is_todo?(task, task_name)
         remove task_name
         File.open(TUDU_DOINGS_FILE_PATH, 'w:UTF-8') { |f|f.puts task_name }
         puts "complete add doings '#{task_name}'"
@@ -213,6 +201,7 @@ module Tudu
       end
 
       private
+
       def get_first_todo_name_if_nil_or_empty(task_name)
         (task_name.nil? || task_name.empty?) ? get_todos.first.name : task_name
       end
@@ -250,6 +239,30 @@ module Tudu
         contents = tasks.size == 0 ? '' : tasks.join("\n") + "\n"
         File.open(file_path, 'w:UTF-8') { |wf|wf.print contents }
         puts "complete remove todo '#{task_name}' from #{file_path}"
+      end
+
+      def when_choose_no_todos?
+        return false unless get_todos.size == 0
+        puts 'todos is empty.'
+        true
+      end
+
+      def when_choose_no_doings?
+        return true if get_doings.size == 0
+        puts 'todos is empty.'
+        false
+      end
+
+      def when_choose_no_task?(task, task_name)
+        return true if task.nil?
+        puts "#{task_name} not exists"
+        false
+      end
+
+      def when_choose_type_is_todo?(task, task_name)
+        return true if task.todo?
+        puts "#{task_name} is not exists in todos. #{task_name} in #{task.type}"
+        false
       end
 
       def doings_to_dones

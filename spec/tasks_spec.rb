@@ -693,7 +693,6 @@ describe Tudu::Tasks do
     end
   end
 
-
   context :remove do
     cases = [
       {

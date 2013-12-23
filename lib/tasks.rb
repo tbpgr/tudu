@@ -203,7 +203,7 @@ module Tudu
       private
 
       def get_first_todo_name_if_nil_or_empty(task_name)
-        (task_name.nil? || task_name.empty?) ? get_todos.first.name : task_name
+        task_name.nil? || task_name.empty? ? get_todos.first.name : task_name
       end
 
       def get_each_tasks(type)
@@ -278,17 +278,19 @@ module Tudu
 
       def todos_to_doings
         _todos = get_todos
-        if _todos.size == 0
-          puts 'All Tasks Finish!!' if get_doings.size == 0
-          return
-        end
-
+        return if finish?(_todos)
         deleted_todos = _todos.dup
         deleted_todos.delete_at 0
         File.open(TUDU_TODOS_FILE_PATH, 'w:UTF-8') do |f|
           deleted_todos.each { |task|f.puts task.name }
         end
         File.open(TUDU_DOINGS_FILE_PATH, 'w:UTF-8') { |f|f.puts _todos.first.name }
+      end
+
+      def finish?(_todos)
+        return false unless _todos.size == 0
+        puts 'All Tasks Finish!!' if get_doings.size == 0
+        true
       end
     end
 

@@ -1,28 +1,28 @@
 # encoding: utf-8
-require "tudu/version"
+require 'tudu/version'
 
 module Tudu
-  #= Tudu::Dsl
+  # = Tudu::Dsl
   class Dsl
-    #== TARGET_TYPES
+    # == TARGET_TYPES
     # notice target types
-    #=== types
+    # === types
     #- none: no notice
     #- mail: mail notice
-    TARGET_TYPES = {:none => :none, :mail => :mail}
-    #== notice target type
+    TARGET_TYPES = { none: :none, mail: :mail }
+    # == notice target type
     attr_accessor :_target_type
-    #== notice targets
+    # == notice targets
     attr_accessor :_targets
 
-    #== initialize Dsl 
+    # == initialize Dsl
     def initialize
       @_target_type = TARGET_TYPES[:none]
       @_targets = []
     end
 
-    #== initialize Dsl 
-    #=== Params
+    # == initialize Dsl
+    # === Params
     #- _target_type: target notice type
     def target_type(_target_type)
       return if _target_type.nil?

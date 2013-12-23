@@ -1,23 +1,23 @@
 # encoding: utf-8
-require "spec_helper"
-require "tudu_core"
+require 'spec_helper'
+require 'tudu_core'
 
 describe Tudu::Core do
   context :init do
     cases = [
       {
         case_no: 1,
-        case_title: "valid case",
+        case_title: 'valid case',
         expected_files: [
-          Tudu::Tasks::TUDU_FILE, 
-          Tudu::Tasks::TUDU_TODOS_FILE, 
-          Tudu::Tasks::TUDU_DOINGS_FILE, 
+          Tudu::Tasks::TUDU_FILE,
+          Tudu::Tasks::TUDU_TODOS_FILE,
+          Tudu::Tasks::TUDU_DOINGS_FILE,
           Tudu::Tasks::TUDU_DONES_FILE
         ],
         expected_contents: [
           Tudu::Tasks::TUDU_FILE_TEMPLATE,
-          Tudu::Tasks::TUDU_TODOS_FILE_TEMPLATE, 
-          Tudu::Tasks::TUDU_DOINGS_FILE_TEMPLATE, 
+          Tudu::Tasks::TUDU_TODOS_FILE_TEMPLATE,
+          Tudu::Tasks::TUDU_DOINGS_FILE_TEMPLATE,
           Tudu::Tasks::TUDU_DONES_FILE_TEMPLATE
         ],
       },
@@ -36,7 +36,7 @@ describe Tudu::Core do
 
           # -- then --
           c[:expected_files].each_with_index do |f, index|
-            actual = File.open("./tudu/#{f}") {|f|f.read}
+            actual = File.open("./tudu/#{f}") { |f|f.read }
             expect(actual).to eq(c[:expected_contents][index])
           end
         ensure
@@ -49,8 +49,8 @@ describe Tudu::Core do
       end
 
       def case_after(c)
-        return unless File.exists? "./tudu"
-        FileUtils.rm_rf("./tudu")
+        return unless File.exists? './tudu'
+        FileUtils.rm_rf('./tudu')
       end
     end
   end
@@ -59,15 +59,15 @@ describe Tudu::Core do
     cases = [
       {
         case_no: 1,
-        case_title: "single add",
-        task_names1: "task_name",
+        case_title: 'single add',
+        task_names1: 'task_name',
         task_names2: nil,
         task_names3: nil,
-        expected: ["task_name"]
+        expected: ['task_name']
       },
       {
         case_no: 2,
-        case_title: "nil add",
+        case_title: 'nil add',
         task_names1: nil,
         task_names2: nil,
         task_names3: nil,
@@ -75,19 +75,19 @@ describe Tudu::Core do
       },
       {
         case_no: 3,
-        case_title: "multi add",
-        task_names1: "task_name1",
-        task_names2: "task_name2",
-        task_names3: "task_name3",
-        expected: ["task_name1","task_name2","task_name3"]
+        case_title: 'multi add',
+        task_names1: 'task_name1',
+        task_names2: 'task_name2',
+        task_names3: 'task_name3',
+        expected: ['task_name1', 'task_name2', 'task_name3']
       },
       {
         case_no: 4,
-        case_title: "duplicate add",
-        task_names1: "task_name1",
-        task_names2: "task_name1",
+        case_title: 'duplicate add',
+        task_names1: 'task_name1',
+        task_names2: 'task_name1',
         task_names3: nil,
-        expected: ["task_name1"]
+        expected: ['task_name1']
       },
     ]
 
@@ -104,7 +104,7 @@ describe Tudu::Core do
           actual = tudu_core.add c[:task_names1], c[:task_names2], c[:task_names3]
 
           # -- then --
-          actual = File.read("./tudu/todos").split("\n")
+          actual = File.read('./tudu/todos').split("\n")
           expect(actual).to eq(c[:expected])
         ensure
           case_after c
@@ -116,8 +116,8 @@ describe Tudu::Core do
       end
 
       def case_after(c)
-        return unless File.exists? "./tudu"
-        FileUtils.rm_rf("./tudu")
+        return unless File.exists? './tudu'
+        FileUtils.rm_rf('./tudu')
       end
     end
   end
@@ -126,22 +126,22 @@ describe Tudu::Core do
     cases = [
       {
         case_no: 1,
-        case_title: "single remove",
-        task_names1: "task_name",
+        case_title: 'single remove',
+        task_names1: 'task_name',
         task_names2: nil,
         task_names3: nil,
       },
       {
         case_no: 2,
-        case_title: "multi remove",
-        task_names1: "task_name1",
-        task_names2: "task_name2",
-        task_names3: "task_name3",
+        case_title: 'multi remove',
+        task_names1: 'task_name1',
+        task_names2: 'task_name2',
+        task_names3: 'task_name3',
       },
       {
         case_no: 3,
-        case_title: "not remove",
-        task_names1: "invalid name",
+        case_title: 'not remove',
+        task_names1: 'invalid name',
         task_names2: nil,
         task_names3: nil,
       },
@@ -163,7 +163,7 @@ describe Tudu::Core do
           # -- then --
           [c[:task_names1], c[:task_names2], c[:task_names3]].each do |e|
             actual = false
-            ["./tudu/todos", "./tudu/doings", "./tudu/dones"].each do |f|
+            ['./tudu/todos', './tudu/doings', './tudu/dones'].each do |f|
               actual = true if File.read(f).split("\n").include?(e)
             end
             expect(actual).to be_false
@@ -178,8 +178,8 @@ describe Tudu::Core do
       end
 
       def case_after(c)
-        return unless File.exists? "./tudu"
-        FileUtils.rm_rf("./tudu")
+        return unless File.exists? './tudu'
+        FileUtils.rm_rf('./tudu')
       end
     end
   end
@@ -188,49 +188,49 @@ describe Tudu::Core do
     cases = [
       {
         case_no: 1,
-        case_title: "[todos, dosings, dones] all tasks",
-        task_names1: "task_name1",
-        task_names2: "task_name2",
-        task_names3: "task_name3",
+        case_title: '[todos, dosings, dones] all tasks',
+        task_names1: 'task_name1',
+        task_names2: 'task_name2',
+        task_names3: 'task_name3',
         search_word: nil,
-        expected: ["task_name1", "task_name2", "task_name3"]
+        expected: ['task_name1', 'task_name2', 'task_name3']
       },
       {
         case_no: 2,
-        case_title: "[todos, dosings, dones] search specific tasks",
-        task_names1: "task_name1",
-        task_names2: "task_name2",
-        task_names3: "task_name3",
-        search_word: "task_name1",
-        expected: ["task_name1"]
+        case_title: '[todos, dosings, dones] search specific tasks',
+        task_names1: 'task_name1',
+        task_names2: 'task_name2',
+        task_names3: 'task_name3',
+        search_word: 'task_name1',
+        expected: ['task_name1']
       },
       {
         case_no: 3,
-        case_title: "[todos, dosings, dones] search specific tasks by regexp",
-        task_names1: "task_name1_1",
-        task_names2: "task_name2_1",
-        task_names3: "task_name2_2",
-        task_names4: "task_name3_1",
-        search_word: "task_name2_",
-        expected: ["task_name2_1", "task_name2_2"]
+        case_title: '[todos, dosings, dones] search specific tasks by regexp',
+        task_names1: 'task_name1_1',
+        task_names2: 'task_name2_1',
+        task_names3: 'task_name2_2',
+        task_names4: 'task_name3_1',
+        search_word: 'task_name2_',
+        expected: ['task_name2_1', 'task_name2_2']
       },
       {
         case_no: 4,
-        case_title: "[todos, dosings, dones] all tasks with category option",
-        task_names1: "task_name1",
-        task_names2: "task_name2",
-        task_names3: "task_name3",
+        case_title: '[todos, dosings, dones] all tasks with category option',
+        task_names1: 'task_name1',
+        task_names2: 'task_name2',
+        task_names3: 'task_name3',
         search_word: nil,
-        options: {:category => true},
+        options: { category: true },
         expected: [
-          "========TODOS========", 
-          "task_name1\ntask_name2\ntask_name3", 
-          "", 
-          "========DOINGS========", 
-          "", 
-          "", 
-          "========DONES========", 
-          ""
+          '========TODOS========',
+          "task_name1\ntask_name2\ntask_name3",
+          '',
+          '========DOINGS========',
+          '',
+          '',
+          '========DONES========',
+          ''
         ]
       },
     ]
@@ -260,8 +260,8 @@ describe Tudu::Core do
       end
 
       def case_after(c)
-        return unless File.exists? "./tudu"
-        FileUtils.rm_rf("./tudu")
+        return unless File.exists? './tudu'
+        FileUtils.rm_rf('./tudu')
       end
     end
   end
@@ -270,37 +270,37 @@ describe Tudu::Core do
     cases = [
       {
         case_no: 1,
-        case_title: "todos all tasks",
-        task_names1: "task_name1",
-        task_names2: "task_name2",
-        task_names3: "task_name3",
+        case_title: 'todos all tasks',
+        task_names1: 'task_name1',
+        task_names2: 'task_name2',
+        task_names3: 'task_name3',
         choose: true,
-        choose_name: "task_name1",
+        choose_name: 'task_name1',
         search_word: nil,
-        expected: ["task_name2", "task_name3"]
+        expected: ['task_name2', 'task_name3']
       },
       {
         case_no: 2,
-        case_title: "todos search specific tasks",
-        task_names1: "task_name1",
-        task_names2: "task_name2",
-        task_names3: "task_name3",
+        case_title: 'todos search specific tasks',
+        task_names1: 'task_name1',
+        task_names2: 'task_name2',
+        task_names3: 'task_name3',
         choose: true,
-        choose_name: "task_name1",
-        search_word: "task_name3",
-        expected: ["task_name3"]
+        choose_name: 'task_name1',
+        search_word: 'task_name3',
+        expected: ['task_name3']
       },
       {
         case_no: 3,
-        case_title: "todos search specific tasks by regexp",
-        task_names1: "task_name1_1",
-        task_names2: "task_name2_1",
-        task_names3: "task_name2_2",
-        task_names4: "task_name3_1",
+        case_title: 'todos search specific tasks by regexp',
+        task_names1: 'task_name1_1',
+        task_names2: 'task_name2_1',
+        task_names3: 'task_name2_2',
+        task_names4: 'task_name3_1',
         choose: true,
-        choose_name: "task_name1_1",
-        search_word: "task_name2_",
-        expected: ["task_name2_1", "task_name2_2"]
+        choose_name: 'task_name1_1',
+        search_word: 'task_name2_',
+        expected: ['task_name2_1', 'task_name2_2']
       },
     ]
 
@@ -331,8 +331,8 @@ describe Tudu::Core do
 
       def case_after(c)
         # implement each case after
-        return unless File.exists? "./tudu"
-        FileUtils.rm_rf("./tudu")
+        return unless File.exists? './tudu'
+        FileUtils.rm_rf('./tudu')
       end
     end
   end
@@ -341,37 +341,37 @@ describe Tudu::Core do
     cases = [
       {
         case_no: 1,
-        case_title: "doings all tasks",
-        task_names1: "task_name1",
-        task_names2: "task_name2",
-        task_names3: "task_name3",
+        case_title: 'doings all tasks',
+        task_names1: 'task_name1',
+        task_names2: 'task_name2',
+        task_names3: 'task_name3',
         choose: true,
-        choose_name: "task_name1",
+        choose_name: 'task_name1',
         search_word: nil,
-        expected: ["task_name1"]
+        expected: ['task_name1']
       },
       {
         case_no: 2,
-        case_title: "doings search specific tasks",
-        task_names1: "task_name1",
-        task_names2: "task_name2",
-        task_names3: "task_name3",
+        case_title: 'doings search specific tasks',
+        task_names1: 'task_name1',
+        task_names2: 'task_name2',
+        task_names3: 'task_name3',
         choose: true,
-        choose_name: "task_name1",
+        choose_name: 'task_name1',
         search_word: nil,
-        expected: ["task_name1"]
+        expected: ['task_name1']
       },
       {
         case_no: 3,
-        case_title: "doings search specific tasks by regexp",
-        task_names1: "task_name1_1",
-        task_names2: "task_name2_1",
-        task_names3: "task_name2_2",
-        task_names4: "task_name3_1",
+        case_title: 'doings search specific tasks by regexp',
+        task_names1: 'task_name1_1',
+        task_names2: 'task_name2_1',
+        task_names3: 'task_name2_2',
+        task_names4: 'task_name3_1',
         choose: true,
-        choose_name: "task_name1_1",
-        search_word: "task_name1_",
-        expected: ["task_name1_1"]
+        choose_name: 'task_name1_1',
+        search_word: 'task_name1_',
+        expected: ['task_name1_1']
       },
     ]
 
@@ -402,8 +402,8 @@ describe Tudu::Core do
 
       def case_after(c)
         # implement each case after
-        return unless File.exists? "./tudu"
-        FileUtils.rm_rf("./tudu")
+        return unless File.exists? './tudu'
+        FileUtils.rm_rf('./tudu')
       end
     end
   end
@@ -412,25 +412,25 @@ describe Tudu::Core do
     cases = [
       {
         case_no: 1,
-        case_title: "doings all tasks",
-        task_names1: "task_name1",
-        task_names2: "task_name2",
-        task_names3: "task_name3",
-        choose_names: ["task_name1", "task_name2"],
-        done_names: ["task_name1"],
+        case_title: 'doings all tasks',
+        task_names1: 'task_name1',
+        task_names2: 'task_name2',
+        task_names3: 'task_name3',
+        choose_names: ['task_name1', 'task_name2'],
+        done_names: ['task_name1'],
         search_word: nil,
-        expected: ["task_name1"]
+        expected: ['task_name1']
       },
       {
         case_no: 2,
-        case_title: "doings search specific tasks",
-        task_names1: "task_name1_1",
-        task_names2: "task_name1_2",
-        task_names3: "task_name2_1",
-        choose_names: ["task_name1_1", "task_name1_2", "task_name2_1"],
-        done_names: ["task_name1_1", "task_name1_2", "task_name2_1"],
-        search_word: "task_name1_",
-        expected: ["task_name1_1", "task_name1_2"]
+        case_title: 'doings search specific tasks',
+        task_names1: 'task_name1_1',
+        task_names2: 'task_name1_2',
+        task_names3: 'task_name2_1',
+        choose_names: ['task_name1_1', 'task_name1_2', 'task_name2_1'],
+        done_names: ['task_name1_1', 'task_name1_2', 'task_name2_1'],
+        search_word: 'task_name1_',
+        expected: ['task_name1_1', 'task_name1_2']
       },
     ]
 
@@ -464,8 +464,8 @@ describe Tudu::Core do
 
       def case_after(c)
         # implement each case after
-        return unless File.exists? "./tudu"
-        FileUtils.rm_rf("./tudu")
+        return unless File.exists? './tudu'
+        FileUtils.rm_rf('./tudu')
       end
     end
   end
@@ -474,11 +474,11 @@ describe Tudu::Core do
     cases = [
       {
         case_no: 1,
-        case_title: "choose task",
-        task_names1: "task_name1",
-        task_names2: "task_name2",
-        task_names3: "task_name3",
-        choose: "task_name1",
+        case_title: 'choose task',
+        task_names1: 'task_name1',
+        task_names2: 'task_name2',
+        task_names3: 'task_name3',
+        choose: 'task_name1',
         expected_todos: "task_name2\ntask_name3\n",
         expected_doings: "task_name1\n"
       },
@@ -513,8 +513,8 @@ describe Tudu::Core do
 
       def case_after(c)
         # implement each case after
-        return unless File.exists? "./tudu"
-        FileUtils.rm_rf("./tudu")
+        return unless File.exists? './tudu'
+        FileUtils.rm_rf('./tudu')
       end
     end
   end
@@ -523,29 +523,29 @@ describe Tudu::Core do
     cases = [
       {
         case_no: 1,
-        case_title: "one doing to done, shift todo to doing",
-        task_names1: "task_name1",
-        task_names2: "task_name2",
-        task_names3: "task_name3",
-        choose: "task_name1",
+        case_title: 'one doing to done, shift todo to doing',
+        task_names1: 'task_name1',
+        task_names2: 'task_name2',
+        task_names3: 'task_name3',
+        choose: 'task_name1',
         expected_doings: "task_name2\n",
         expected_done: "task_name1\n"
       },
       {
         case_no: 2,
-        case_title: "one doing to done, not shift todo to doing",
-        task_names1: "task_name1",
-        choose: "task_name1",
-        expected_doings: "",
+        case_title: 'one doing to done, not shift todo to doing',
+        task_names1: 'task_name1',
+        choose: 'task_name1',
+        expected_doings: '',
         expected_done: "task_name1\n"
       },
       {
         case_no: 3,
-        case_title: "no doing",
-        task_names1: "task_name1",
-        choose: "",
-        expected_doings: "",
-        expected_done: ""
+        case_title: 'no doing',
+        task_names1: 'task_name1',
+        choose: '',
+        expected_doings: '',
+        expected_done: ''
       },
     ]
 
@@ -579,8 +579,8 @@ describe Tudu::Core do
 
       def case_after(c)
         # implement each case after
-        return unless File.exists? "./tudu"
-        FileUtils.rm_rf("./tudu")
+        return unless File.exists? './tudu'
+        FileUtils.rm_rf('./tudu')
       end
     end
   end

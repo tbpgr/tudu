@@ -1,7 +1,7 @@
 # encoding: utf-8
-require "spec_helper"
-require "tudu_core"
-require "tasks"
+require 'spec_helper'
+require 'tudu_core'
+require 'tasks'
 
 describe Tudu::Tasks do
 
@@ -9,16 +9,16 @@ describe Tudu::Tasks do
     cases = [
       {
         case_no: 1,
-        case_title: "todo task",
-        name: "task_name",
-        type: "todos",
+        case_title: 'todo task',
+        name: 'task_name',
+        type: 'todos',
         expected: true,
       },
       {
         case_no: 2,
-        case_title: "not todo task",
-        name: "task_name",
-        type: "doings",
+        case_title: 'not todo task',
+        name: 'task_name',
+        type: 'doings',
         expected: false,
       },
     ]
@@ -56,16 +56,16 @@ describe Tudu::Tasks do
     cases = [
       {
         case_no: 1,
-        case_title: "doing task",
-        name: "task_name",
-        type: "doings",
+        case_title: 'doing task',
+        name: 'task_name',
+        type: 'doings',
         expected: true,
       },
       {
         case_no: 2,
-        case_title: "not doing task",
-        name: "task_name",
-        type: "todos",
+        case_title: 'not doing task',
+        name: 'task_name',
+        type: 'todos',
         expected: false,
       },
     ]
@@ -104,16 +104,16 @@ describe Tudu::Tasks do
     cases = [
       {
         case_no: 1,
-        case_title: "done task",
-        name: "task_name",
-        type: "dones",
+        case_title: 'done task',
+        name: 'task_name',
+        type: 'dones',
         expected: true,
       },
       {
         case_no: 2,
-        case_title: "not done task",
-        name: "task_name",
-        type: "doings",
+        case_title: 'not done task',
+        name: 'task_name',
+        type: 'doings',
         expected: false,
       },
     ]
@@ -152,24 +152,24 @@ describe Tudu::Tasks do
     cases = [
       {
         case_no: 1,
-        case_title: "get todos from file",
-        type: "todos",
-        texts: ["task1", "task2", "task3"],
-        expected: ["task1", "task2", "task3"],
+        case_title: 'get todos from file',
+        type: 'todos',
+        texts: ['task1', 'task2', 'task3'],
+        expected: ['task1', 'task2', 'task3'],
       },
       {
         case_no: 2,
-        case_title: "get doings from file",
-        type: "doings",
-        texts: ["task1", "task2", "task3"],
-        expected: ["task1", "task2", "task3"],
+        case_title: 'get doings from file',
+        type: 'doings',
+        texts: ['task1', 'task2', 'task3'],
+        expected: ['task1', 'task2', 'task3'],
       },
       {
         case_no: 3,
-        case_title: "get done from file",
-        type: "dones",
-        texts: ["task1", "task2", "task3"],
-        expected: ["task1", "task2", "task3"],
+        case_title: 'get done from file',
+        type: 'dones',
+        texts: ['task1', 'task2', 'task3'],
+        expected: ['task1', 'task2', 'task3'],
       },
     ]
 
@@ -194,7 +194,7 @@ describe Tudu::Tasks do
       def case_before(c)
         # implement each case before
         Dir.mkdir("./#{Tudu::Tasks::TUDU_DIR}")
-        File.open("./#{Tudu::Tasks::TUDU_DIR}/#{c[:type]}", "w") {|f|f.puts c[:texts].join("\n")}
+        File.open("./#{Tudu::Tasks::TUDU_DIR}/#{c[:type]}", 'w') { |f|f.puts c[:texts].join("\n") }
       end
 
       def case_after(c)
@@ -209,35 +209,35 @@ describe Tudu::Tasks do
     cases = [
       {
         case_no: 1,
-        case_title: "get todos from file",
-        type: "todos",
-        texts: ["task1", "task2", "task3"],
+        case_title: 'get todos from file',
+        type: 'todos',
+        texts: ['task1', 'task2', 'task3'],
         expected: [
-          Tudu::Tasks.new("todos", "task1"),
-          Tudu::Tasks.new("todos", "task2"),
-          Tudu::Tasks.new("todos", "task3"),
+          Tudu::Tasks.new('todos', 'task1'),
+          Tudu::Tasks.new('todos', 'task2'),
+          Tudu::Tasks.new('todos', 'task3'),
           ],
       },
       {
         case_no: 2,
-        case_title: "get doings from file",
-        type: "doings",
-        texts: ["task1", "task2", "task3"],
+        case_title: 'get doings from file',
+        type: 'doings',
+        texts: ['task1', 'task2', 'task3'],
         expected: [
-          Tudu::Tasks.new("doings", "task1"),
-          Tudu::Tasks.new("doings", "task2"),
-          Tudu::Tasks.new("doings", "task3"),
+          Tudu::Tasks.new('doings', 'task1'),
+          Tudu::Tasks.new('doings', 'task2'),
+          Tudu::Tasks.new('doings', 'task3'),
           ],
       },
       {
         case_no: 3,
-        case_title: "get done from file",
-        type: "dones",
-        texts: ["task1", "task2", "task3"],
+        case_title: 'get done from file',
+        type: 'dones',
+        texts: ['task1', 'task2', 'task3'],
         expected: [
-          Tudu::Tasks.new("dones", "task1"),
-          Tudu::Tasks.new("dones", "task2"),
-          Tudu::Tasks.new("dones", "task3"),
+          Tudu::Tasks.new('dones', 'task1'),
+          Tudu::Tasks.new('dones', 'task2'),
+          Tudu::Tasks.new('dones', 'task3'),
           ],
       },
     ]
@@ -263,7 +263,7 @@ describe Tudu::Tasks do
       def case_before(c)
         # implement each case before
         Dir.mkdir("./#{Tudu::Tasks::TUDU_DIR}")
-        File.open("./#{Tudu::Tasks::TUDU_DIR}/#{c[:type]}", "w") {|f|f.puts c[:texts].join("\n")}
+        File.open("./#{Tudu::Tasks::TUDU_DIR}/#{c[:type]}", 'w') { |f|f.puts c[:texts].join("\n") }
       end
 
       def case_after(c)
@@ -278,13 +278,13 @@ describe Tudu::Tasks do
     cases = [
       {
         case_no: 1,
-        case_title: "get doings from file",
-        type: "doings",
-        texts: ["task1", "task2", "task3"],
+        case_title: 'get doings from file',
+        type: 'doings',
+        texts: ['task1', 'task2', 'task3'],
         expected: [
-          Tudu::Tasks.new("doings", "task1"),
-          Tudu::Tasks.new("doings", "task2"),
-          Tudu::Tasks.new("doings", "task3"),
+          Tudu::Tasks.new('doings', 'task1'),
+          Tudu::Tasks.new('doings', 'task2'),
+          Tudu::Tasks.new('doings', 'task3'),
           ],
       },
     ]
@@ -310,7 +310,7 @@ describe Tudu::Tasks do
       def case_before(c)
         # implement each case before
         Dir.mkdir("./#{Tudu::Tasks::TUDU_DIR}")
-        File.open("./#{Tudu::Tasks::TUDU_DIR}/#{c[:type]}", "w") {|f|f.puts c[:texts].join("\n")}
+        File.open("./#{Tudu::Tasks::TUDU_DIR}/#{c[:type]}", 'w') { |f|f.puts c[:texts].join("\n") }
       end
 
       def case_after(c)
@@ -325,13 +325,13 @@ describe Tudu::Tasks do
     cases = [
       {
         case_no: 1,
-        case_title: "get done from file",
-        type: "dones",
-        texts: ["task1", "task2", "task3"],
+        case_title: 'get done from file',
+        type: 'dones',
+        texts: ['task1', 'task2', 'task3'],
         expected: [
-          Tudu::Tasks.new("dones", "task1"),
-          Tudu::Tasks.new("dones", "task2"),
-          Tudu::Tasks.new("dones", "task3"),
+          Tudu::Tasks.new('dones', 'task1'),
+          Tudu::Tasks.new('dones', 'task2'),
+          Tudu::Tasks.new('dones', 'task3'),
           ],
       },
     ]
@@ -357,7 +357,7 @@ describe Tudu::Tasks do
       def case_before(c)
         # implement each case before
         Dir.mkdir("./#{Tudu::Tasks::TUDU_DIR}")
-        File.open("./#{Tudu::Tasks::TUDU_DIR}/#{c[:type]}", "w") {|f|f.puts c[:texts].join("\n")}
+        File.open("./#{Tudu::Tasks::TUDU_DIR}/#{c[:type]}", 'w') { |f|f.puts c[:texts].join("\n") }
       end
 
       def case_after(c)
@@ -372,34 +372,34 @@ describe Tudu::Tasks do
     cases = [
       {
         case_no: 1,
-        case_title: "find todos from tasks",
-        type: "todos",
-        texts: ["task1", "task2", "task3"],
-        search_name: "task1",
-        expected: Tudu::Tasks.new("todos", "task1")
+        case_title: 'find todos from tasks',
+        type: 'todos',
+        texts: ['task1', 'task2', 'task3'],
+        search_name: 'task1',
+        expected: Tudu::Tasks.new('todos', 'task1')
       },
       {
         case_no: 2,
-        case_title: "find doings from tasks",
-        type: "doings",
-        texts: ["task1", "task2", "task3"],
-        search_name: "task1",
-        expected: Tudu::Tasks.new("doings", "task1")
+        case_title: 'find doings from tasks',
+        type: 'doings',
+        texts: ['task1', 'task2', 'task3'],
+        search_name: 'task1',
+        expected: Tudu::Tasks.new('doings', 'task1')
       },
       {
         case_no: 3,
-        case_title: "find done from tasks",
-        type: "dones",
-        texts: ["task1", "task2", "task3"],
-        search_name: "task1",
-        expected: Tudu::Tasks.new("dones", "task1")
+        case_title: 'find done from tasks',
+        type: 'dones',
+        texts: ['task1', 'task2', 'task3'],
+        search_name: 'task1',
+        expected: Tudu::Tasks.new('dones', 'task1')
       },
       {
         case_no: 4,
-        case_title: "not find",
-        type: "dones",
-        texts: ["task1", "task2", "task3"],
-        search_name: "task4",
+        case_title: 'not find',
+        type: 'dones',
+        texts: ['task1', 'task2', 'task3'],
+        search_name: 'task4',
         expected: nil
       },
     ]
@@ -426,7 +426,7 @@ describe Tudu::Tasks do
         # implement each case before
         Tudu::Core.new.init
         Dir.mkdir(Tudu::Tasks::TUDU_DIR) unless File.exists?(Tudu::Tasks::TUDU_DIR)
-        File.open("./#{Tudu::Tasks::TUDU_DIR}/#{c[:type]}", "w") {|f|f.puts c[:texts].join("\n")}
+        File.open("./#{Tudu::Tasks::TUDU_DIR}/#{c[:type]}", 'w') { |f|f.puts c[:texts].join("\n") }
       end
 
       def case_after(c)
@@ -441,86 +441,86 @@ describe Tudu::Tasks do
     cases = [
       {
         case_no: 1,
-        case_title: "choose task",
-        type: "todos",
-        texts: ["task1", "task2", "task3"],
-        choose: "task1",
+        case_title: 'choose task',
+        type: 'todos',
+        texts: ['task1', 'task2', 'task3'],
+        choose: 'task1',
         expected: [
-          Tudu::Tasks.new("todos", "task2"),
-          Tudu::Tasks.new("todos", "task3"),
-          Tudu::Tasks.new("doings", "task1"),
+          Tudu::Tasks.new('todos', 'task2'),
+          Tudu::Tasks.new('todos', 'task3'),
+          Tudu::Tasks.new('doings', 'task1'),
         ]
       },
       {
         case_no: 2,
-        case_title: "aleady exists doing",
-        type: "doings",
-        texts: ["task1", "task2", "task3"],
-        choose: "task1",
+        case_title: 'aleady exists doing',
+        type: 'doings',
+        texts: ['task1', 'task2', 'task3'],
+        choose: 'task1',
         expected: [
-          Tudu::Tasks.new("doings", "task1"),
-          Tudu::Tasks.new("doings", "task2"),
-          Tudu::Tasks.new("doings", "task3"),
+          Tudu::Tasks.new('doings', 'task1'),
+          Tudu::Tasks.new('doings', 'task2'),
+          Tudu::Tasks.new('doings', 'task3'),
         ]
       },
       {
         case_no: 3,
-        case_title: "not exists task",
-        type: "todos",
-        texts: ["task1", "task2", "task3"],
-        choose: "task4",
+        case_title: 'not exists task',
+        type: 'todos',
+        texts: ['task1', 'task2', 'task3'],
+        choose: 'task4',
         expected: [
-          Tudu::Tasks.new("todos", "task1"),
-          Tudu::Tasks.new("todos", "task2"),
-          Tudu::Tasks.new("todos", "task3"),
+          Tudu::Tasks.new('todos', 'task1'),
+          Tudu::Tasks.new('todos', 'task2'),
+          Tudu::Tasks.new('todos', 'task3'),
         ]
       },
       {
         case_no: 4,
-        case_title: "task exists, but dones",
-        type: "dones",
-        texts: ["task1", "task2", "task3"],
-        choose: "task1",
+        case_title: 'task exists, but dones',
+        type: 'dones',
+        texts: ['task1', 'task2', 'task3'],
+        choose: 'task1',
         expected: [
-          Tudu::Tasks.new("dones", "task1"),
-          Tudu::Tasks.new("dones", "task2"),
-          Tudu::Tasks.new("dones", "task3"),
+          Tudu::Tasks.new('dones', 'task1'),
+          Tudu::Tasks.new('dones', 'task2'),
+          Tudu::Tasks.new('dones', 'task3'),
         ]
       },
       {
         case_no: 5,
-        case_title: "task exists, empty args",
-        type: "todos",
-        texts: ["task1", "task2", "task3"],
-        choose: "",
+        case_title: 'task exists, empty args',
+        type: 'todos',
+        texts: ['task1', 'task2', 'task3'],
+        choose: '',
         expected: [
-          Tudu::Tasks.new("todos", "task2"),
-          Tudu::Tasks.new("todos", "task3"),
-          Tudu::Tasks.new("doings", "task1"),
+          Tudu::Tasks.new('todos', 'task2'),
+          Tudu::Tasks.new('todos', 'task3'),
+          Tudu::Tasks.new('doings', 'task1'),
         ]
       },
       {
         case_no: 6,
-        case_title: "task exists, nil args",
-        type: "todos",
-        texts: ["task1", "task2", "task3"],
+        case_title: 'task exists, nil args',
+        type: 'todos',
+        texts: ['task1', 'task2', 'task3'],
         choose: nil,
         expected: [
-          Tudu::Tasks.new("todos", "task2"),
-          Tudu::Tasks.new("todos", "task3"),
-          Tudu::Tasks.new("doings", "task1"),
+          Tudu::Tasks.new('todos', 'task2'),
+          Tudu::Tasks.new('todos', 'task3'),
+          Tudu::Tasks.new('doings', 'task1'),
         ]
       },
       {
         case_no: 7,
-        case_title: "todos not exists, empty args",
-        type: "doings",
-        texts: ["task1", "task2", "task3"],
+        case_title: 'todos not exists, empty args',
+        type: 'doings',
+        texts: ['task1', 'task2', 'task3'],
         choose: nil,
         expected: [
-          Tudu::Tasks.new("doings", "task1"),
-          Tudu::Tasks.new("doings", "task2"),
-          Tudu::Tasks.new("doings", "task3"),
+          Tudu::Tasks.new('doings', 'task1'),
+          Tudu::Tasks.new('doings', 'task2'),
+          Tudu::Tasks.new('doings', 'task3'),
         ]
       },
 
@@ -547,7 +547,7 @@ describe Tudu::Tasks do
       def case_before(c)
         # implement each case before
         Tudu::Core.new.init
-        File.open("./#{Tudu::Tasks::TUDU_DIR}/#{c[:type]}", "w") {|f|f.puts c[:texts].join("\n")}
+        File.open("./#{Tudu::Tasks::TUDU_DIR}/#{c[:type]}", 'w') { |f|f.puts c[:texts].join("\n") }
       end
 
       def case_after(c)
@@ -562,31 +562,31 @@ describe Tudu::Tasks do
     cases = [
       {
         case_no: 1,
-        case_title: "one doing to done, shift todo to doing",
-        task_names: ["task1", "task2", "task3"],
-        choose: "task1",
+        case_title: 'one doing to done, shift todo to doing',
+        task_names: ['task1', 'task2', 'task3'],
+        choose: 'task1',
         expected: [
-          Tudu::Tasks.new("todos", "task3"),
-          Tudu::Tasks.new("doings", "task2"),
-          Tudu::Tasks.new("dones", "task1"),
+          Tudu::Tasks.new('todos', 'task3'),
+          Tudu::Tasks.new('doings', 'task2'),
+          Tudu::Tasks.new('dones', 'task1'),
         ]
       },
       {
         case_no: 2,
-        case_title: "one doing to done, not shift todo to doing",
-        task_names: ["task1"],
-        choose: "task1",
+        case_title: 'one doing to done, not shift todo to doing',
+        task_names: ['task1'],
+        choose: 'task1',
         expected: [
-          Tudu::Tasks.new("dones", "task1"),
+          Tudu::Tasks.new('dones', 'task1'),
         ]
       },
       {
         case_no: 3,
-        case_title: "no doing",
-        task_names: ["task1"],
-        choose: "",
+        case_title: 'no doing',
+        task_names: ['task1'],
+        choose: '',
         expected: [
-          Tudu::Tasks.new("todos", "task1"),
+          Tudu::Tasks.new('todos', 'task1'),
         ]
       },
     ]
@@ -627,17 +627,17 @@ describe Tudu::Tasks do
     cases = [
       {
         case_no: 1,
-        case_title: "single add",
-        task_names1: "task_name",
+        case_title: 'single add',
+        task_names1: 'task_name',
         task_names2: nil,
         task_names3: nil,
         expected: [
-          Tudu::Tasks.new("todos", "task_name")
+          Tudu::Tasks.new('todos', 'task_name')
         ]
       },
       {
         case_no: 2,
-        case_title: "nil add",
+        case_title: 'nil add',
         task_names1: nil,
         task_names2: nil,
         task_names3: nil,
@@ -645,24 +645,24 @@ describe Tudu::Tasks do
       },
       {
         case_no: 3,
-        case_title: "multi add",
-        task_names1: "task_name1",
-        task_names2: "task_name2",
-        task_names3: "task_name3",
+        case_title: 'multi add',
+        task_names1: 'task_name1',
+        task_names2: 'task_name2',
+        task_names3: 'task_name3',
         expected: [
-          Tudu::Tasks.new("todos", "task_name1"), 
-          Tudu::Tasks.new("todos", "task_name2"), 
-          Tudu::Tasks.new("todos", "task_name3")
+          Tudu::Tasks.new('todos', 'task_name1'),
+          Tudu::Tasks.new('todos', 'task_name2'),
+          Tudu::Tasks.new('todos', 'task_name3')
         ]
       },
       {
         case_no: 4,
-        case_title: "duplicate add",
-        task_names1: "task_name1",
-        task_names2: "task_name1",
+        case_title: 'duplicate add',
+        task_names1: 'task_name1',
+        task_names2: 'task_name1',
         task_names3: nil,
         expected: [
-          Tudu::Tasks.new("todos", "task_name1"), 
+          Tudu::Tasks.new('todos', 'task_name1'),
         ]
       },
     ]
@@ -702,24 +702,24 @@ describe Tudu::Tasks do
     cases = [
       {
         case_no: 1,
-        case_title: "single remove",
-        add_tasks: ["task_name"],
-        remove_tasks: ["task_name"],
+        case_title: 'single remove',
+        add_tasks: ['task_name'],
+        remove_tasks: ['task_name'],
         expected_tasks: [],
       },
       {
         case_no: 2,
-        case_title: "multi remove",
-        add_tasks: ["task_name1", "task_name2", "task_name3"],
-        remove_tasks: ["task_name1", "task_name2", "task_name3"],
+        case_title: 'multi remove',
+        add_tasks: ['task_name1', 'task_name2', 'task_name3'],
+        remove_tasks: ['task_name1', 'task_name2', 'task_name3'],
         expected_tasks: [],
       },
       {
         case_no: 3,
-        case_title: "not remove",
-        add_tasks: ["task_name"],
-        remove_tasks: ["invalid name"],
-        expected_tasks: [Tudu::Tasks.new("todos", "task_name")],
+        case_title: 'not remove',
+        add_tasks: ['task_name'],
+        remove_tasks: ['invalid name'],
+        expected_tasks: [Tudu::Tasks.new('todos', 'task_name')],
       },
     ]
 
@@ -758,14 +758,14 @@ describe Tudu::Tasks do
     cases = [
       {
         case_no: 1,
-        case_title: "get todos from file",
+        case_title: 'get todos from file',
         tasks: [
-          Tudu::Tasks.new("doings", "task1_1"),
-          Tudu::Tasks.new("doings", "task1_2"),
-          Tudu::Tasks.new("doings", "task3"),
+          Tudu::Tasks.new('doings', 'task1_1'),
+          Tudu::Tasks.new('doings', 'task1_2'),
+          Tudu::Tasks.new('doings', 'task3'),
           ],
-        filter_word: "task1_1",
-        expected: [Tudu::Tasks.new("doings", "task1_1")],
+        filter_word: 'task1_1',
+        expected: [Tudu::Tasks.new('doings', 'task1_1')],
       },
     ]
 
@@ -801,27 +801,27 @@ describe Tudu::Tasks do
     cases = [
       {
         case_no: 1,
-        case_title: "display progress",
-        todos: ["task5", "task6"],
-        doings: ["task3", "task4"],
-        dones: ["task1", "task2"],
-        expected: "2/6|===>       |33%",
+        case_title: 'display progress',
+        todos: ['task5', 'task6'],
+        doings: ['task3', 'task4'],
+        dones: ['task1', 'task2'],
+        expected: '2/6|===>       |33%',
       },
       {
         case_no: 2,
-        case_title: "display none progress",
-        todos: ["task3", "task4"],
-        doings: ["task1", "task2"],
+        case_title: 'display none progress',
+        todos: ['task3', 'task4'],
+        doings: ['task1', 'task2'],
         dones: [],
-        expected: "0/4|>          |0%",
+        expected: '0/4|>          |0%',
       },
       {
         case_no: 3,
-        case_title: "display complete progress",
+        case_title: 'display complete progress',
         todos: [],
         doings: [],
-        dones: ["task1", "task2"],
-        expected: "2/2|==========>|100%",
+        dones: ['task1', 'task2'],
+        expected: '2/2|==========>|100%',
       },
     ]
 
@@ -846,9 +846,9 @@ describe Tudu::Tasks do
       def case_before(c)
         # implement each case before
         Tudu::Core.new.init
-        File.open("./#{Tudu::Tasks::TUDU_DIR}/todos", "w") {|f|f.puts c[:todos].join("\n")}
-        File.open("./#{Tudu::Tasks::TUDU_DIR}/doings", "w") {|f|f.puts c[:doings].join("\n")}
-        File.open("./#{Tudu::Tasks::TUDU_DIR}/dones", "w") {|f|f.puts c[:dones].join("\n")}
+        File.open("./#{Tudu::Tasks::TUDU_DIR}/todos", 'w') { |f|f.puts c[:todos].join("\n") }
+        File.open("./#{Tudu::Tasks::TUDU_DIR}/doings", 'w') { |f|f.puts c[:doings].join("\n") }
+        File.open("./#{Tudu::Tasks::TUDU_DIR}/dones", 'w') { |f|f.puts c[:dones].join("\n") }
       end
 
       def case_after(c)

@@ -1,37 +1,37 @@
 # encoding: utf-8
-require "spec_helper"
-require "tudu_dsl"
+require 'spec_helper'
+require 'tudu_dsl'
 
 describe Tudu::Dsl do
   context :target_type do
     cases = [
       {
         case_no: 1,
-        case_title: "valid type String",
-        input_type: "mail",
+        case_title: 'valid type String',
+        input_type: 'mail',
         expected: :mail
       },
       {
         case_no: 2,
-        case_title: "valid type Symbol",
+        case_title: 'valid type Symbol',
         input_type: :mail,
         expected: :mail
       },
       {
         case_no: 3,
-        case_title: "invalid type nil",
+        case_title: 'invalid type nil',
         input_type: nil,
         expected: :none
       },
       {
         case_no: 4,
-        case_title: "invalid type not Symbol or String",
+        case_title: 'invalid type not Symbol or String',
         input_type: 123,
         expected: :none
       },
       {
         case_no: 5,
-        case_title: "invalid type",
+        case_title: 'invalid type',
         input_type: :invalid,
         expected: :none
       },
@@ -70,19 +70,19 @@ describe Tudu::Dsl do
     cases = [
       {
         case_no: 1,
-        case_title: "valid type Array",
-        input_type: ["tbpgr@tbpgr.jp", "tbpgr@tbpgr.jp"],
-        expected: ["tbpgr@tbpgr.jp", "tbpgr@tbpgr.jp"]
+        case_title: 'valid type Array',
+        input_type: ['tbpgr@tbpgr.jp', 'tbpgr@tbpgr.jp'],
+        expected: ['tbpgr@tbpgr.jp', 'tbpgr@tbpgr.jp']
       },
       {
         case_no: 2,
-        case_title: "invalid type",
-        input_type: "tbpgr@tbpgr.jp",
+        case_title: 'invalid type',
+        input_type: 'tbpgr@tbpgr.jp',
         expected: []
       },
       {
         case_no: 3,
-        case_title: "invalid type nil",
+        case_title: 'invalid type nil',
         input_type: nil,
         expected: []
       },

@@ -672,7 +672,7 @@ describe Tudu::Tasks do
           Tudu::Core.new.init
 
           # -- when --
-          actual = Tudu::Tasks.add c[:task_names1], c[:task_names2], c[:task_names3]
+          Tudu::Tasks.add c[:task_names1], c[:task_names2], c[:task_names3]
 
           # -- then --
           actual = Tudu::Tasks.get_todos

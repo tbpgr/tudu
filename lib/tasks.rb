@@ -87,7 +87,7 @@ module Tudu
       def add(*task_names)
         task_names.each do |task_name|
           if find_tasks(task_name)
-            puts "#{task_name} is already exists.";
+            puts "#{task_name} is already exists."
             next
           end
           File.open(TUDU_TODOS_FILE_PATH, 'a:UTF-8') { |f|f.puts task_name }

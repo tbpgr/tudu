@@ -19,12 +19,12 @@ module Tudu
     desc 'add', 'add tasks to todos file'
     def add(*args)
       puts args
-      Tudu::Core.new.add *args
+      Tudu::Core.new.add(*args)
     end
 
     desc 'remove', 'remove tasks from todos,doings,dones file'
     def remove(*args)
-      Tudu::Core.new.remove *args
+      Tudu::Core.new.remove(*args)
     end
 
     desc 'choose', 'choose tasks from todos to doings file'

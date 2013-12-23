@@ -312,9 +312,7 @@ module Tudu
     end
 
     def ==(other)
-      if name == other.name
-        return true if type == other.type
-      end
+      return true if name == other.name && type == other.type
       false
     end
   end

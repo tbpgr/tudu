@@ -82,12 +82,30 @@ module Tudu
     def categorized_tasks(tasks, search_word)
       ret = []
       tasks = Tudu::Tasks.filter_tasks(Tudu::Tasks.get_tasks, search_word)
+      ret += get_categorized_todos(tasks, search_word)
+      ret += get_categorized_doings(tasks, search_word)
+      ret += get_categorized_dones(tasks, search_word)
+      ret
+    end
+
+    def get_categorized_todos(tasks, search_word)
+      ret = []
       ret << '========TODOS========'
       ret << tasks.select { |task|task.type == Tudu::Tasks::TUDU_TODOS_FILE }.map(&:name).join("\n")
       ret << ''
+      ret
+    end
+
+    def get_categorized_doings(tasks, search_word)
+      ret = []
       ret << '========DOINGS========'
       ret << tasks.select { |task|task.type == Tudu::Tasks::TUDU_DOINGS_FILE }.map(&:name).join("\n")
       ret << ''
+      ret
+    end
+
+    def get_categorized_dones(tasks, search_word)
+      ret = []
       ret << '========DONES========'
       ret << tasks.select { |task|task.type == Tudu::Tasks::TUDU_DONES_FILE }.map(&:name).join("\n")
       ret

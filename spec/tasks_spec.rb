@@ -35,7 +35,7 @@ describe Tudu::Tasks do
           actual = tudu_task.todo?
 
           # -- then --
-          ret = expect(actual).to eq(c[:expected])
+          expect(actual).to eq(c[:expected])
         ensure
           case_after c
         end
@@ -82,7 +82,7 @@ describe Tudu::Tasks do
           actual = tudu_task.doing?
 
           # -- then --
-          ret = expect(actual).to eq(c[:expected])
+          expect(actual).to eq(c[:expected])
         ensure
           case_after c
 
@@ -130,7 +130,7 @@ describe Tudu::Tasks do
           actual = tudu_task.done?
 
           # -- then --
-          ret = expect(actual).to eq(c[:expected])
+          expect(actual).to eq(c[:expected])
         ensure
           case_after c
         end
@@ -185,7 +185,7 @@ describe Tudu::Tasks do
           actual = Tudu::Tasks.get_tasks_from_file(c[:type])
 
           # -- then --
-          ret = expect(actual).to eq(c[:expected])
+          expect(actual).to eq(c[:expected])
         ensure
           case_after c
         end
@@ -254,7 +254,7 @@ describe Tudu::Tasks do
           actual = Tudu::Tasks.get_tasks(c[:type])
 
           # -- then --
-          ret = expect(actual).to eq(c[:expected])
+          expect(actual).to eq(c[:expected])
         ensure
           case_after c
         end
@@ -301,7 +301,7 @@ describe Tudu::Tasks do
           actual = Tudu::Tasks.get_doings
 
           # -- then --
-          ret = expect(actual).to eq(c[:expected])
+          expect(actual).to eq(c[:expected])
         ensure
           case_after c
         end
@@ -348,7 +348,7 @@ describe Tudu::Tasks do
           actual = Tudu::Tasks.get_dones
 
           # -- then --
-          ret = expect(actual).to eq(c[:expected])
+          expect(actual).to eq(c[:expected])
         ensure
           case_after c
         end
@@ -416,7 +416,7 @@ describe Tudu::Tasks do
           actual = Tudu::Tasks.find_tasks c[:search_name]
 
           # -- then --
-          ret = expect(actual).to eq(c[:expected])
+          expect(actual).to eq(c[:expected])
         ensure
           case_after c
         end
@@ -781,7 +781,7 @@ describe Tudu::Tasks do
           actual = Tudu::Tasks.filter_tasks(c[:tasks], c[:filter_word])
 
           # -- then --
-          ret = expect(actual).to eq(c[:expected])
+          expect(actual).to eq(c[:expected])
         ensure
           case_after c
         end
@@ -837,7 +837,7 @@ describe Tudu::Tasks do
           actual = Tudu::Tasks.progress
 
           # -- then --
-          ret = expect(actual).to eq(c[:expected])
+          expect(actual).to eq(c[:expected])
         ensure
           case_after c
         end

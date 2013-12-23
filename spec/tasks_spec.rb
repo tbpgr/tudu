@@ -43,7 +43,6 @@ describe Tudu::Tasks do
 
       def case_before(c)
         # implement each case before
-
       end
 
       def case_after(c)
@@ -91,7 +90,6 @@ describe Tudu::Tasks do
 
       def case_before(c)
         # implement each case before
-
       end
 
       def case_after(c)
@@ -138,7 +136,6 @@ describe Tudu::Tasks do
 
       def case_before(c)
         # implement each case before
-
       end
 
       def case_after(c)

@@ -32,6 +32,28 @@ Or install it yourself as:
     ┗ Tudufile :in current version, we not use this
 ~~~
 
+## DSL List
+| dsl                                | mean                                                                               |
+|:-----------                        |:------------                                                                       |
+| add 'task_name1', 'task_name2'     |add tasks to todos                                                                  |
+| remove 'task_name1', 'task_name2'  |remove tasks from [todos, doings, dones]                                            |
+| choose                             |choose first task from todos to doings                                              |
+| choose 'task_name'                 |choose task from todos to doings                                                    |
+| done                               |complete task. doings to dones, and first todos to doings                           |
+| done -p                            |complete task. doings to dones, and first todos to doings.after show progress       |
+| tasks                              |search all task from [todos, doings, dones]                                         |
+| tasks 'task_name'                  |search task from [todos, doings, dones] by keyword 'task_name'                      |
+| tasks 'task_name' -c               |search task from [todos, doings, dones] by keyword 'task_name' with categolized view|
+| todos                              |search all task from todos                                                          |
+| todos 'task_name'                  |search task from todos by keyword 'task_name'                                       |
+| doings                             |search all task from doings                                                         |
+| doings 'task_name'                 |search task from doings by keyword 'task_name'                                      |
+| now                                |alias of doings command                                                             |
+| now 'task_name'                    |alias of doings 'task_name' command                                                 |
+| dones                              |search all task from dones                                                          |
+| dones 'task_name'                  |search task from dones by keyword 'task_name'                                       |
+| progress                           |show tasks progress                                                                 |
+
 ## Usage
 ### init
 * generate todos,doings,dones emptyfile
@@ -170,7 +192,7 @@ one
 $ tudu add one two three
 $ tudu choose one
 $ tudu done
-$tudu tasks -c
+$ tudu tasks -c
 ========TODOS========
 three
 

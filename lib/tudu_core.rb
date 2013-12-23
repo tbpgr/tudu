@@ -17,14 +17,14 @@ module Tudu
     # === Params
     #- task_names : add task name list
     def add(*task_names)
-      Tudu::Tasks.add *task_names
+      Tudu::Tasks.add(*task_names)
     end
 
     # == remove task to todo
     # === Params
     #- task_names : remove task name list
     def remove(*task_names)
-      Tudu::Tasks.remove *task_names
+      Tudu::Tasks.remove(*task_names)
     end
 
     # == choose todo => doing task

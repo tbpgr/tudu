@@ -99,17 +99,7 @@ module Tudu
       # === Params
       #- task_names : remove task name list
       def remove(*task_names)
-        task_names.each do |task_name|
-          can_find = false
-          TASK_FILES.each_value do |rf|
-            tasks = get_tasks_from_file(rf)
-            next unless has_task?(tasks, task_name)
-            remove_task(tasks, task_name, "./#{TUDU_DIR}/#{rf}")
-            can_find = true
-            break
-          end
-          puts "no such todo '#{task_name}'" unless can_find
-        end
+        task_names.each { |task_name|remove_each_task(task_name) }
       end
 
       # == choose todo => doing task
@@ -241,6 +231,18 @@ module Tudu
 
       def has_task?(tasks, task_name)
         tasks.include? task_name
+      end
+
+      def remove_each_task(task_name)
+        can_find = false
+        TASK_FILES.each_value do |rf|
+          tasks = get_tasks_from_file(rf)
+          next unless has_task?(tasks, task_name)
+          remove_task(tasks, task_name, "./#{TUDU_DIR}/#{rf}")
+          can_find = true
+          break
+        end
+        puts "no such todo '#{task_name}'" unless can_find
       end
 
       def remove_task(tasks, task_name, file_path)

@@ -144,7 +144,6 @@ describe Tudu::Tasks do
     end
   end
 
-
   context :get_tasks_from_file do
     cases = [
       {

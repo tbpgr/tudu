@@ -47,7 +47,8 @@ module Tudu
     #- options : options.
     def tasks(search_word, options)
       tasks = Tudu::Tasks.filter_tasks(Tudu::Tasks.get_tasks, search_word).map(&:name)
-      (!options.nil? and options[:category]) ? categorized_tasks(tasks, search_word) : tasks
+      is_caregory = (!options.nil? && options[:category])
+      is_caregory ? categorized_tasks(tasks, search_word) : tasks
     end
 
     # == search todos

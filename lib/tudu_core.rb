@@ -111,6 +111,6 @@ module Tudu
       ret
     end
 
-    alias :now :doings
+    alias_method :now, :doings
   end
 end

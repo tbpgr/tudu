@@ -218,6 +218,8 @@ two
 one
 ~~~
 
+* image sample
+
 <img src="./doc_image/colored_tasks.png" />
 
 ### show specific tasks from [todos, doings, dones].

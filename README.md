@@ -33,26 +33,27 @@ Or install it yourself as:
 ~~~
 
 ## DSL List
-| dsl                                | mean                                                                               |
-|:-----------                        |:------------                                                                       |
-| add 'task_name1', 'task_name2'     |add tasks to todos                                                                  |
-| remove 'task_name1', 'task_name2'  |remove tasks from [todos, doings, dones]                                            |
-| choose                             |choose first task from todos to doings                                              |
-| choose 'task_name'                 |choose task from todos to doings                                                    |
-| done                               |complete task. doings to dones, and first todos to doings                           |
-| done -p                            |complete task. doings to dones, and first todos to doings.after show progress       |
-| tasks                              |search all task from [todos, doings, dones]                                         |
-| tasks 'task_name'                  |search task from [todos, doings, dones] by keyword 'task_name'                      |
-| tasks 'task_name' -c               |search task from [todos, doings, dones] by keyword 'task_name' with categolized view|
-| todos                              |search all task from todos                                                          |
-| todos 'task_name'                  |search task from todos by keyword 'task_name'                                       |
-| doings                             |search all task from doings                                                         |
-| doings 'task_name'                 |search task from doings by keyword 'task_name'                                      |
-| now                                |alias of doings command                                                             |
-| now 'task_name'                    |alias of doings 'task_name' command                                                 |
-| dones                              |search all task from dones                                                          |
-| dones 'task_name'                  |search task from dones by keyword 'task_name'                                       |
-| progress                           |show tasks progress                                                                 |
+| dsl                                | mean                                                                                        |
+|:-----------                        |:------------                                                                                |
+| add 'task_name1', 'task_name2'     |add tasks to todos                                                                           |
+| remove 'task_name1', 'task_name2'  |remove tasks from [todos, doings, dones]                                                     |
+| choose                             |choose first task from todos to doings                                                       |
+| choose 'task_name'                 |choose task from todos to doings                                                             |
+| done                               |complete task. doings to dones, and first todos to doings                                    |
+| done -p                            |complete task. doings to dones, and first todos to doings.after show progress                |
+| tasks                              |search all task from [todos, doings, dones]                                                  |
+| tasks 'task_name'                  |search task from [todos, doings, dones] by keyword 'task_name'                               |
+| tasks 'task_name' -c               |search task from [todos, doings, dones] by keyword 'task_name' with categolized view         |
+| tasks 'task_name' -c --color       |search task from [todos, doings, dones] by keyword 'task_name' with categolized view, colored|
+| todos                              |search all task from todos                                                                   |
+| todos 'task_name'                  |search task from todos by keyword 'task_name'                                                |
+| doings                             |search all task from doings                                                                  |
+| doings 'task_name'                 |search task from doings by keyword 'task_name'                                               |
+| now                                |alias of doings command                                                                      |
+| now 'task_name'                    |alias of doings 'task_name' command                                                          |
+| dones                              |search all task from dones                                                                   |
+| dones 'task_name'                  |search task from dones by keyword 'task_name'                                                |
+| progress                           |show tasks progress                                                                          |
 
 ## Usage
 ### init
@@ -195,13 +196,30 @@ $ tudu done
 $ tudu tasks -c
 ========TODOS========
 three
-
 ========DOINGS========
 two
-
 ========DONES========
 one
 ~~~
+
+### tasks show all tasks from [todos, doings, dones] with categorized option and colored option.
+* tudu tasks -c --color
+
+~~~
+$ tudu add one two three
+$ tudu choose one
+$ tudu done
+$ tudu tasks -c
+========TODOS========
+three
+========DOINGS========
+two
+========DONES========
+one
+~~~
+
+image
+<img src="./doc_image/colored_tasks.png" />
 
 ### show specific tasks from [todos, doings, dones].
 * tudu tasks search_word
@@ -274,6 +292,7 @@ if you want to do other operation, edit [todos, doings, dones] directly.
 it's only plain text, so you can edit freely.
 
 ## History
+* version 0.0.5 : add color option to 'tasks'
 * version 0.0.4 : add 'progress'. add progress option to 'done'.
 * version 0.0.3 : add categorized option to 'tasks'.
 * version 0.0.2 : after execute 'done', if there is no todos and doings, display celebration message.

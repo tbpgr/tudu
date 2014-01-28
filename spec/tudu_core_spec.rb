@@ -224,13 +224,30 @@ describe Tudu::Core do
         options: { category: true },
         expected: [
           '========TODOS========',
-          "task_name1\ntask_name2\ntask_name3",
-          '',
+          'task_name1',
+          'task_name2',
+          'task_name3',
           '========DOINGS========',
-          '',
-          '',
           '========DONES========',
-          ''
+        ]
+      },
+      {
+        case_no: 5,
+        case_title: '[todos, dosings, dones] all tasks with category option, color option',
+        task_names1: 'task_name1',
+        task_names2: 'task_name2',
+        task_names3: 'task_name3',
+        search_word: nil,
+        choose_cnt: 1,
+        done_cnt: 1,
+        options: { category: true, color: true },
+        expected: [
+          '========TODOS========',
+          "\e[31mtask_name3\e[0m",
+          '========DOINGS========',
+          "\e[33mtask_name2\e[0m",
+          '========DONES========',
+          "\e[36mtask_name1\e[0m",
         ]
       },
     ]
@@ -244,6 +261,8 @@ describe Tudu::Core do
           tudu_core = Tudu::Core.new
           tudu_core.init
           tudu_core.add c[:task_names1], c[:task_names2], c[:task_names3], c[:task_names4]
+          c[:choose_cnt].times { tudu_core.choose nil } if c[:choose_cnt]
+          c[:done_cnt].times { tudu_core.done } if c[:done_cnt]
 
           # -- when --
           actual = tudu_core.tasks c[:search_word], c[:options]

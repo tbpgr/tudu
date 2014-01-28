@@ -41,6 +41,7 @@ module Tudu
 
     desc 'tasks', 'search tasks from todos,doings,dones file. no args => get all tasks. set search word args, you get hit tasks'
     option :category, type: :boolean, aliases: '-c', desc: 'display categorized tasks'
+    option :color, type: :boolean, aliases: '-co', desc: 'display colored tasks'
     def tasks(*args)
       puts Tudu::Core.new.tasks args.first, options
     end

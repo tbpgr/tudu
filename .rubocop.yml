@@ -1,4 +1,1 @@
-LineLength:
-  Enabled: false
-ClassLength:
-  Enabled: false
+inherit_from: rubocop-todo.yml

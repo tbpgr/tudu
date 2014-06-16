@@ -8,7 +8,7 @@ module Tudu
   class Core
     # == generate files [Tudufile, todos, doings, dones]
     def init
-      Dir.mkdir Tudu::Tasks::TUDU_DIR unless File.exists? Tudu::Tasks::TUDU_DIR
+      Dir.mkdir Tudu::Tasks::TUDU_DIR unless File.exist? Tudu::Tasks::TUDU_DIR
       Tudu::Tasks::TUDU_KEYS.each do |key|
         File.open("./tudu/#{Tudu::Tasks::INIT_FILES[key]}", 'w:UTF-8') { |f|f.print Tudu::Tasks::INIT_FILES_TEMPLATE[key] }
       end
@@ -104,11 +104,11 @@ module Tudu
     end
 
     def colored?(options)
-      !options.nil? && options[:color]
+      options && options[:color]
     end
 
     def categorised?(options)
-      !options.nil? && options[:category]
+      options && options[:category]
     end
 
     def todos_task(search_word)

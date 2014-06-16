@@ -150,22 +150,22 @@ describe Tudu::Tasks do
         case_no: 1,
         case_title: 'get todos from file',
         type: 'todos',
-        texts: %w{task1 task2 task3},
-        expected: %w{task1 task2 task3},
+        texts: %w(task1 task2 task3),
+        expected: %w(task1 task2 task3),
       },
       {
         case_no: 2,
         case_title: 'get doings from file',
         type: 'doings',
-        texts: %w{task1 task2 task3},
-        expected: %w{task1 task2 task3},
+        texts: %w(task1 task2 task3),
+        expected: %w(task1 task2 task3),
       },
       {
         case_no: 3,
         case_title: 'get done from file',
         type: 'dones',
-        texts: %w{task1 task2 task3},
-        expected: %w{task1 task2 task3},
+        texts: %w(task1 task2 task3),
+        expected: %w(task1 task2 task3),
       },
     ]
 
@@ -195,7 +195,7 @@ describe Tudu::Tasks do
 
       def case_after(c)
         # implement each case after
-        return unless File.exists? Tudu::Tasks::TUDU_DIR
+        return unless File.exist? Tudu::Tasks::TUDU_DIR
         FileUtils.rm_rf(Tudu::Tasks::TUDU_DIR)
       end
     end
@@ -207,7 +207,7 @@ describe Tudu::Tasks do
         case_no: 1,
         case_title: 'get todos from file',
         type: 'todos',
-        texts: %w{task1 task2 task3},
+        texts: %w(task1 task2 task3),
         expected: [
           Tudu::Tasks.new('todos', 'task1'),
           Tudu::Tasks.new('todos', 'task2'),
@@ -218,7 +218,7 @@ describe Tudu::Tasks do
         case_no: 2,
         case_title: 'get doings from file',
         type: 'doings',
-        texts: %w{task1 task2 task3},
+        texts: %w(task1 task2 task3),
         expected: [
           Tudu::Tasks.new('doings', 'task1'),
           Tudu::Tasks.new('doings', 'task2'),
@@ -229,7 +229,7 @@ describe Tudu::Tasks do
         case_no: 3,
         case_title: 'get done from file',
         type: 'dones',
-        texts: %w{task1 task2 task3},
+        texts: %w(task1 task2 task3),
         expected: [
           Tudu::Tasks.new('dones', 'task1'),
           Tudu::Tasks.new('dones', 'task2'),
@@ -264,7 +264,7 @@ describe Tudu::Tasks do
 
       def case_after(c)
         # implement each case after
-        return unless File.exists? Tudu::Tasks::TUDU_DIR
+        return unless File.exist? Tudu::Tasks::TUDU_DIR
         FileUtils.rm_rf(Tudu::Tasks::TUDU_DIR)
       end
     end
@@ -276,7 +276,7 @@ describe Tudu::Tasks do
         case_no: 1,
         case_title: 'get doings from file',
         type: 'doings',
-        texts: %w{task1 task2 task3},
+        texts: %w(task1 task2 task3),
         expected: [
           Tudu::Tasks.new('doings', 'task1'),
           Tudu::Tasks.new('doings', 'task2'),
@@ -311,7 +311,7 @@ describe Tudu::Tasks do
 
       def case_after(c)
         # implement each case after
-        return unless File.exists? Tudu::Tasks::TUDU_DIR
+        return unless File.exist? Tudu::Tasks::TUDU_DIR
         FileUtils.rm_rf(Tudu::Tasks::TUDU_DIR)
       end
     end
@@ -323,7 +323,7 @@ describe Tudu::Tasks do
         case_no: 1,
         case_title: 'get done from file',
         type: 'dones',
-        texts: %w{task1 task2 task3},
+        texts: %w(task1 task2 task3),
         expected: [
           Tudu::Tasks.new('dones', 'task1'),
           Tudu::Tasks.new('dones', 'task2'),
@@ -358,7 +358,7 @@ describe Tudu::Tasks do
 
       def case_after(c)
         # implement each case after
-        return unless File.exists? Tudu::Tasks::TUDU_DIR
+        return unless File.exist? Tudu::Tasks::TUDU_DIR
         FileUtils.rm_rf(Tudu::Tasks::TUDU_DIR)
       end
     end
@@ -370,7 +370,7 @@ describe Tudu::Tasks do
         case_no: 1,
         case_title: 'find todos from tasks',
         type: 'todos',
-        texts: %w{task1 task2 task3},
+        texts: %w(task1 task2 task3),
         search_name: 'task1',
         expected: Tudu::Tasks.new('todos', 'task1')
       },
@@ -378,7 +378,7 @@ describe Tudu::Tasks do
         case_no: 2,
         case_title: 'find doings from tasks',
         type: 'doings',
-        texts: %w{task1 task2 task3},
+        texts: %w(task1 task2 task3),
         search_name: 'task1',
         expected: Tudu::Tasks.new('doings', 'task1')
       },
@@ -386,7 +386,7 @@ describe Tudu::Tasks do
         case_no: 3,
         case_title: 'find done from tasks',
         type: 'dones',
-        texts: %w{task1 task2 task3},
+        texts: %w(task1 task2 task3),
         search_name: 'task1',
         expected: Tudu::Tasks.new('dones', 'task1')
       },
@@ -394,7 +394,7 @@ describe Tudu::Tasks do
         case_no: 4,
         case_title: 'not find',
         type: 'dones',
-        texts: %w{task1 task2 task3},
+        texts: %w(task1 task2 task3),
         search_name: 'task4',
         expected: nil
       },
@@ -421,13 +421,13 @@ describe Tudu::Tasks do
       def case_before(c)
         # implement each case before
         Tudu::Core.new.init
-        Dir.mkdir(Tudu::Tasks::TUDU_DIR) unless File.exists?(Tudu::Tasks::TUDU_DIR)
+        Dir.mkdir(Tudu::Tasks::TUDU_DIR) unless File.exist?(Tudu::Tasks::TUDU_DIR)
         File.open("./#{Tudu::Tasks::TUDU_DIR}/#{c[:type]}", 'w') { |f|f.puts c[:texts].join("\n") }
       end
 
       def case_after(c)
         # implement each case after
-        return unless File.exists? Tudu::Tasks::TUDU_DIR
+        return unless File.exist? Tudu::Tasks::TUDU_DIR
         FileUtils.rm_rf(Tudu::Tasks::TUDU_DIR)
       end
     end
@@ -439,7 +439,7 @@ describe Tudu::Tasks do
         case_no: 1,
         case_title: 'choose task',
         type: 'todos',
-        texts: %w{task1 task2 task3},
+        texts: %w(task1 task2 task3),
         choose: 'task1',
         expected: [
           Tudu::Tasks.new('todos', 'task2'),
@@ -451,7 +451,7 @@ describe Tudu::Tasks do
         case_no: 2,
         case_title: 'aleady exists doing',
         type: 'doings',
-        texts: %w{task1 task2 task3},
+        texts: %w(task1 task2 task3),
         choose: 'task1',
         expected: [
           Tudu::Tasks.new('doings', 'task1'),
@@ -463,7 +463,7 @@ describe Tudu::Tasks do
         case_no: 3,
         case_title: 'not exists task',
         type: 'todos',
-        texts: %w{task1 task2 task3},
+        texts: %w(task1 task2 task3),
         choose: 'task4',
         expected: [
           Tudu::Tasks.new('todos', 'task1'),
@@ -475,7 +475,7 @@ describe Tudu::Tasks do
         case_no: 4,
         case_title: 'task exists, but dones',
         type: 'dones',
-        texts: %w{task1 task2 task3},
+        texts: %w(task1 task2 task3),
         choose: 'task1',
         expected: [
           Tudu::Tasks.new('dones', 'task1'),
@@ -487,7 +487,7 @@ describe Tudu::Tasks do
         case_no: 5,
         case_title: 'task exists, empty args',
         type: 'todos',
-        texts: %w{task1 task2 task3},
+        texts: %w(task1 task2 task3),
         choose: '',
         expected: [
           Tudu::Tasks.new('todos', 'task2'),
@@ -499,7 +499,7 @@ describe Tudu::Tasks do
         case_no: 6,
         case_title: 'task exists, nil args',
         type: 'todos',
-        texts: %w{task1 task2 task3},
+        texts: %w(task1 task2 task3),
         choose: nil,
         expected: [
           Tudu::Tasks.new('todos', 'task2'),
@@ -511,7 +511,7 @@ describe Tudu::Tasks do
         case_no: 7,
         case_title: 'todos not exists, empty args',
         type: 'doings',
-        texts: %w{task1 task2 task3},
+        texts: %w(task1 task2 task3),
         choose: nil,
         expected: [
           Tudu::Tasks.new('doings', 'task1'),
@@ -548,7 +548,7 @@ describe Tudu::Tasks do
 
       def case_after(c)
         # implement each case after
-        return unless File.exists? Tudu::Tasks::TUDU_DIR
+        return unless File.exist? Tudu::Tasks::TUDU_DIR
         FileUtils.rm_rf(Tudu::Tasks::TUDU_DIR)
       end
     end
@@ -559,7 +559,7 @@ describe Tudu::Tasks do
       {
         case_no: 1,
         case_title: 'one doing to done, shift todo to doing',
-        task_names: %w{task1 task2 task3},
+        task_names: %w(task1 task2 task3),
         choose: 'task1',
         expected: [
           Tudu::Tasks.new('todos', 'task3'),
@@ -613,7 +613,7 @@ describe Tudu::Tasks do
 
       def case_after(c)
         # implement each case after
-        return unless File.exists? Tudu::Tasks::TUDU_DIR
+        return unless File.exist? Tudu::Tasks::TUDU_DIR
         FileUtils.rm_rf(Tudu::Tasks::TUDU_DIR)
       end
     end
@@ -687,7 +687,7 @@ describe Tudu::Tasks do
       end
 
       def case_after(c)
-        return unless File.exists? Tudu::Tasks::TUDU_DIR
+        return unless File.exist? Tudu::Tasks::TUDU_DIR
         FileUtils.rm_rf(Tudu::Tasks::TUDU_DIR)
       end
     end
@@ -705,8 +705,8 @@ describe Tudu::Tasks do
       {
         case_no: 2,
         case_title: 'multi remove',
-        add_tasks: %w{task_name1 task_name2 task_name3},
-        remove_tasks: %w{task_name1 task_name2 task_name3},
+        add_tasks: %w(task_name1 task_name2 task_name3),
+        remove_tasks: %w(task_name1 task_name2 task_name3),
         expected_tasks: [],
       },
       {
@@ -743,7 +743,7 @@ describe Tudu::Tasks do
       end
 
       def case_after(c)
-        return unless File.exists? Tudu::Tasks::TUDU_DIR
+        return unless File.exist? Tudu::Tasks::TUDU_DIR
         FileUtils.rm_rf(Tudu::Tasks::TUDU_DIR)
       end
     end
@@ -797,16 +797,16 @@ describe Tudu::Tasks do
       {
         case_no: 1,
         case_title: 'display progress',
-        todos: %w{task5 task6},
-        doings: %w{task3 task4},
-        dones: %w{task1 task2},
+        todos: %w(task5 task6),
+        doings: %w(task3 task4),
+        dones: %w(task1 task2),
         expected: '2/6|===>       |33%',
       },
       {
         case_no: 2,
         case_title: 'display none progress',
-        todos: %w{task3 task4},
-        doings: %w{task1 task2},
+        todos: %w(task3 task4),
+        doings: %w(task1 task2),
         dones: [],
         expected: '0/4|>          |0%',
       },
@@ -815,7 +815,7 @@ describe Tudu::Tasks do
         case_title: 'display complete progress',
         todos: [],
         doings: [],
-        dones: %w{task1 task2},
+        dones: %w(task1 task2),
         expected: '2/2|==========>|100%',
       },
     ]
@@ -848,7 +848,7 @@ describe Tudu::Tasks do
 
       def case_after(c)
         # implement each case after
-        return unless File.exists? Tudu::Tasks::TUDU_DIR
+        return unless File.exist? Tudu::Tasks::TUDU_DIR
         FileUtils.rm_rf(Tudu::Tasks::TUDU_DIR)
       end
     end

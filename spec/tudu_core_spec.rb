@@ -49,7 +49,7 @@ describe Tudu::Core do
       end
 
       def case_after(c)
-        return unless File.exists? './tudu'
+        return unless File.exist? './tudu'
         FileUtils.rm_rf('./tudu')
       end
     end
@@ -79,7 +79,7 @@ describe Tudu::Core do
         task_names1: 'task_name1',
         task_names2: 'task_name2',
         task_names3: 'task_name3',
-        expected: %w{task_name1 task_name2 task_name3}
+        expected: %w(task_name1 task_name2 task_name3)
       },
       {
         case_no: 4,
@@ -116,7 +116,7 @@ describe Tudu::Core do
       end
 
       def case_after(c)
-        return unless File.exists? './tudu'
+        return unless File.exist? './tudu'
         FileUtils.rm_rf('./tudu')
       end
     end
@@ -163,7 +163,7 @@ describe Tudu::Core do
           # -- then --
           [c[:task_names1], c[:task_names2], c[:task_names3]].each do |e|
             actual = false
-            %w{./tudu/todos ./tudu/doings ./tudu/dones}.each do |f|
+            %w(./tudu/todos ./tudu/doings ./tudu/dones).each do |f|
               actual = true if File.read(f).split("\n").include?(e)
             end
             expect(actual).to be_false
@@ -178,7 +178,7 @@ describe Tudu::Core do
       end
 
       def case_after(c)
-        return unless File.exists? './tudu'
+        return unless File.exist? './tudu'
         FileUtils.rm_rf('./tudu')
       end
     end
@@ -193,7 +193,7 @@ describe Tudu::Core do
         task_names2: 'task_name2',
         task_names3: 'task_name3',
         search_word: nil,
-        expected: %w{task_name1 task_name2 task_name3}
+        expected: %w(task_name1 task_name2 task_name3)
       },
       {
         case_no: 2,
@@ -212,7 +212,7 @@ describe Tudu::Core do
         task_names3: 'task_name2_2',
         task_names4: 'task_name3_1',
         search_word: 'task_name2_',
-        expected: %w{task_name2_1 task_name2_2}
+        expected: %w(task_name2_1 task_name2_2)
       },
       {
         case_no: 4,
@@ -279,7 +279,7 @@ describe Tudu::Core do
       end
 
       def case_after(c)
-        return unless File.exists? './tudu'
+        return unless File.exist? './tudu'
         FileUtils.rm_rf('./tudu')
       end
     end
@@ -296,7 +296,7 @@ describe Tudu::Core do
         choose: true,
         choose_name: 'task_name1',
         search_word: nil,
-        expected: %w{task_name2 task_name3}
+        expected: %w(task_name2 task_name3)
       },
       {
         case_no: 2,
@@ -319,7 +319,7 @@ describe Tudu::Core do
         choose: true,
         choose_name: 'task_name1_1',
         search_word: 'task_name2_',
-        expected: %w{task_name2_1 task_name2_2}
+        expected: %w(task_name2_1 task_name2_2)
       },
     ]
 
@@ -350,7 +350,7 @@ describe Tudu::Core do
 
       def case_after(c)
         # implement each case after
-        return unless File.exists? './tudu'
+        return unless File.exist? './tudu'
         FileUtils.rm_rf('./tudu')
       end
     end
@@ -421,7 +421,7 @@ describe Tudu::Core do
 
       def case_after(c)
         # implement each case after
-        return unless File.exists? './tudu'
+        return unless File.exist? './tudu'
         FileUtils.rm_rf('./tudu')
       end
     end
@@ -435,7 +435,7 @@ describe Tudu::Core do
         task_names1: 'task_name1',
         task_names2: 'task_name2',
         task_names3: 'task_name3',
-        choose_names: %w{task_name1 task_name2},
+        choose_names: %w(task_name1 task_name2),
         done_names: ['task_name1'],
         search_word: nil,
         expected: ['task_name1']
@@ -446,10 +446,10 @@ describe Tudu::Core do
         task_names1: 'task_name1_1',
         task_names2: 'task_name1_2',
         task_names3: 'task_name2_1',
-        choose_names: %w{task_name1_1 task_name1_2 task_name2_1},
-        done_names: %w{task_name1_1 task_name1_2 task_name2_1},
+        choose_names: %w(task_name1_1 task_name1_2 task_name2_1),
+        done_names: %w(task_name1_1 task_name1_2 task_name2_1),
         search_word: 'task_name1_',
-        expected: %w{task_name1_1 task_name1_2}
+        expected: %w(task_name1_1 task_name1_2)
       },
     ]
 
@@ -483,7 +483,7 @@ describe Tudu::Core do
 
       def case_after(c)
         # implement each case after
-        return unless File.exists? './tudu'
+        return unless File.exist? './tudu'
         FileUtils.rm_rf('./tudu')
       end
     end
@@ -532,7 +532,7 @@ describe Tudu::Core do
 
       def case_after(c)
         # implement each case after
-        return unless File.exists? './tudu'
+        return unless File.exist? './tudu'
         FileUtils.rm_rf('./tudu')
       end
     end
@@ -598,7 +598,7 @@ describe Tudu::Core do
 
       def case_after(c)
         # implement each case after
-        return unless File.exists? './tudu'
+        return unless File.exist? './tudu'
         FileUtils.rm_rf('./tudu')
       end
     end

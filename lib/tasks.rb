@@ -172,7 +172,7 @@ module Tudu
       # return filterd task list
       def filter_tasks(tasks, search_word)
         return tasks if search_word.nil?
-        tasks.select { |task|task.name.match /.*#{search_word}.*/ }
+        tasks.select { |task|task.name.match(/.*#{search_word}.*/) }
       end
 
       # == find task from all tasks.

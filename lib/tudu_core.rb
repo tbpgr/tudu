@@ -112,15 +112,15 @@ module Tudu
     end
 
     def todos_task(search_word)
-      Tudu::Tasks.filter_tasks(Tudu::Tasks.get_todos, search_word)
+      Tudu::Tasks.filter_tasks(Tudu::Tasks.todos, search_word)
     end
 
     def doings_task(search_word)
-      Tudu::Tasks.filter_tasks(Tudu::Tasks.get_doings, search_word)
+      Tudu::Tasks.filter_tasks(Tudu::Tasks.doings, search_word)
     end
 
     def dones_task(search_word)
-      Tudu::Tasks.filter_tasks(Tudu::Tasks.get_dones, search_word)
+      Tudu::Tasks.filter_tasks(Tudu::Tasks.dones, search_word)
     end
   end
 end

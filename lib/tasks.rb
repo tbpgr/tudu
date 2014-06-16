@@ -128,21 +128,21 @@ module Tudu
       # == get todos type tasks.
       # === Returns
       # return Array[Tasks]
-      def get_todos
+      def todos
         get_tasks(TUDU_TODOS_FILE)
       end
 
       # == get doings type tasks.
       # === Returns
       # return Array[Tasks]
-      def get_doings
+      def doings
         get_tasks(TUDU_DOINGS_FILE)
       end
 
       # == get dones type tasks.
       # === Returns
       # return Array[Tasks]
-      def get_dones
+      def dones
         get_tasks(TUDU_DONES_FILE)
       end
 
@@ -152,7 +152,7 @@ module Tudu
       # === Returns
       # return Array[Tasks]
       def get_tasks(type = nil)
-        type.nil? ? get_all_tasks : get_each_tasks(type)
+        type.nil? ? all_tasks : get_each_tasks(type)
       end
 
       # == get each type tasks from file.
@@ -190,7 +190,7 @@ module Tudu
       # return progress
       def progress
         total_count = get_tasks.size
-        dones_count = get_dones.size
+        dones_count = dones.size
         percent = total_count == 0 ? 0 : (dones_count.to_f / total_count.to_f * 100).round
         prefix = "#{dones_count}/#{total_count}|"
         done_bar = '=' * (percent / 10)
@@ -203,7 +203,7 @@ module Tudu
       private
 
       def get_first_todo_name_if_nil_or_empty(task_name)
-        task_name.nil? || task_name.empty? ? get_todos.first.name : task_name
+        task_name.nil? || task_name.empty? ? todos.first.name : task_name
       end
 
       def get_each_tasks(type)
@@ -212,7 +212,7 @@ module Tudu
         tasks
       end
 
-      def get_all_tasks
+      def all_tasks
         tasks = []
         TASK_FILES.each_value { |each_type|tasks += get_each_tasks(each_type) }
         tasks
@@ -242,13 +242,13 @@ module Tudu
       end
 
       def when_choose_no_todos?
-        return false unless get_todos.size == 0
+        return false unless todos.size == 0
         puts 'todos is empty.'
         true
       end
 
       def when_choose_no_doings?
-        return true if get_doings.size == 0
+        return true if doings.size == 0
         puts 'todos is empty.'
         false
       end
@@ -266,7 +266,7 @@ module Tudu
       end
 
       def doings_to_dones
-        _doings = get_doings
+        _doings = doings
         if _doings.size == 0
           puts 'there is no doing task.before done, you must choose task.'
           return false
@@ -277,7 +277,7 @@ module Tudu
       end
 
       def todos_to_doings
-        _todos = get_todos
+        _todos = todos
         return if finish?(_todos)
         deleted_todos = _todos.dup
         deleted_todos.delete_at 0
@@ -289,7 +289,7 @@ module Tudu
 
       def finish?(_todos)
         return false unless _todos.size == 0
-        puts 'All Tasks Finish!!' if get_doings.size == 0
+        puts 'All Tasks Finish!!' if doings.size == 0
         true
       end
     end

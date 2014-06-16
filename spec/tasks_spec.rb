@@ -270,7 +270,7 @@ describe Tudu::Tasks do
     end
   end
 
-  context :get_todos do
+  context :todos do
     cases = [
       {
         case_no: 1,
@@ -294,7 +294,7 @@ describe Tudu::Tasks do
           # nothing
 
           # -- when --
-          actual = Tudu::Tasks.get_doings
+          actual = Tudu::Tasks.doings
 
           # -- then --
           expect(actual).to eq(c[:expected])
@@ -317,7 +317,7 @@ describe Tudu::Tasks do
     end
   end
 
-  context :get_dones do
+  context :dones do
     cases = [
       {
         case_no: 1,
@@ -341,7 +341,7 @@ describe Tudu::Tasks do
           # nothing
 
           # -- when --
-          actual = Tudu::Tasks.get_dones
+          actual = Tudu::Tasks.dones
 
           # -- then --
           expect(actual).to eq(c[:expected])
@@ -675,7 +675,7 @@ describe Tudu::Tasks do
           Tudu::Tasks.add c[:task_names1], c[:task_names2], c[:task_names3]
 
           # -- then --
-          actual = Tudu::Tasks.get_todos
+          actual = Tudu::Tasks.todos
           expect(actual).to eq(c[:expected])
         ensure
           case_after c

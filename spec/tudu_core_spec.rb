@@ -23,8 +23,8 @@ describe Tudu::Core do
           Tudu::Templates::TUDU_TODOS_FILE_TEMPLATE,
           Tudu::Templates::TUDU_DOINGS_FILE_TEMPLATE,
           Tudu::Templates::TUDU_DONES_FILE_TEMPLATE
-        ],
-      },
+        ]
+      }
     ]
 
     cases.each do |c|
@@ -92,7 +92,7 @@ describe Tudu::Core do
         task_names2: 'task_name1',
         task_names3: nil,
         expected: ['task_name1']
-      },
+      }
     ]
 
     cases.each do |c|
@@ -133,22 +133,22 @@ describe Tudu::Core do
         case_title: 'single remove',
         task_names1: 'task_name',
         task_names2: nil,
-        task_names3: nil,
+        task_names3: nil
       },
       {
         case_no: 2,
         case_title: 'multi remove',
         task_names1: 'task_name1',
         task_names2: 'task_name2',
-        task_names3: 'task_name3',
+        task_names3: 'task_name3'
       },
       {
         case_no: 3,
         case_title: 'not remove',
         task_names1: 'invalid name',
         task_names2: nil,
-        task_names3: nil,
-      },
+        task_names3: nil
+      }
     ]
 
     cases.each do |c|
@@ -232,7 +232,7 @@ describe Tudu::Core do
           'task_name2',
           'task_name3',
           '========DOINGS========',
-          '========DONES========',
+          '========DONES========'
         ]
       },
       {
@@ -251,9 +251,9 @@ describe Tudu::Core do
           '========DOINGS========',
           "\e[33mtask_name2\e[0m",
           '========DONES========',
-          "\e[36mtask_name1\e[0m",
+          "\e[36mtask_name1\e[0m"
         ]
-      },
+      }
     ]
 
     cases.each do |c|
@@ -324,7 +324,7 @@ describe Tudu::Core do
         choose_name: 'task_name1_1',
         search_word: 'task_name2_',
         expected: %w(task_name2_1 task_name2_2)
-      },
+      }
     ]
 
     cases.each do |c|
@@ -395,7 +395,7 @@ describe Tudu::Core do
         choose_name: 'task_name1_1',
         search_word: 'task_name1_',
         expected: ['task_name1_1']
-      },
+      }
     ]
 
     cases.each do |c|
@@ -454,7 +454,7 @@ describe Tudu::Core do
         done_names: %w(task_name1_1 task_name1_2 task_name2_1),
         search_word: 'task_name1_',
         expected: %w(task_name1_1 task_name1_2)
-      },
+      }
     ]
 
     cases.each do |c|
@@ -504,7 +504,7 @@ describe Tudu::Core do
         choose: 'task_name1',
         expected_todos: "task_name2\ntask_name3\n",
         expected_doings: "task_name1\n"
-      },
+      }
     ]
 
     cases.each do |c|
@@ -569,7 +569,7 @@ describe Tudu::Core do
         choose: '',
         expected_doings: '',
         expected_done: ''
-      },
+      }
     ]
 
     cases.each do |c|

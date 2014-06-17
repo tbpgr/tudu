@@ -14,15 +14,15 @@ describe Tudu::Tasks do
         case_title: 'todo task',
         name: 'task_name',
         type: 'todos',
-        expected: true,
+        expected: true
       },
       {
         case_no: 2,
         case_title: 'not todo task',
         name: 'task_name',
         type: 'doings',
-        expected: false,
-      },
+        expected: false
+      }
     ]
 
     cases.each do |c|
@@ -60,15 +60,15 @@ describe Tudu::Tasks do
         case_title: 'doing task',
         name: 'task_name',
         type: 'doings',
-        expected: true,
+        expected: true
       },
       {
         case_no: 2,
         case_title: 'not doing task',
         name: 'task_name',
         type: 'todos',
-        expected: false,
-      },
+        expected: false
+      }
     ]
 
     cases.each do |c|
@@ -107,15 +107,15 @@ describe Tudu::Tasks do
         case_title: 'done task',
         name: 'task_name',
         type: 'dones',
-        expected: true,
+        expected: true
       },
       {
         case_no: 2,
         case_title: 'not done task',
         name: 'task_name',
         type: 'doings',
-        expected: false,
-      },
+        expected: false
+      }
     ]
 
     cases.each do |c|
@@ -153,22 +153,22 @@ describe Tudu::Tasks do
         case_title: 'get todos from file',
         type: 'todos',
         texts: %w(task1 task2 task3),
-        expected: %w(task1 task2 task3),
+        expected: %w(task1 task2 task3)
       },
       {
         case_no: 2,
         case_title: 'get doings from file',
         type: 'doings',
         texts: %w(task1 task2 task3),
-        expected: %w(task1 task2 task3),
+        expected: %w(task1 task2 task3)
       },
       {
         case_no: 3,
         case_title: 'get done from file',
         type: 'dones',
         texts: %w(task1 task2 task3),
-        expected: %w(task1 task2 task3),
-      },
+        expected: %w(task1 task2 task3)
+      }
     ]
 
     cases.each do |c|
@@ -213,8 +213,8 @@ describe Tudu::Tasks do
         expected: [
           Tudu::Task.new('todos', 'task1'),
           Tudu::Task.new('todos', 'task2'),
-          Tudu::Task.new('todos', 'task3'),
-          ],
+          Tudu::Task.new('todos', 'task3')
+          ]
       },
       {
         case_no: 2,
@@ -224,8 +224,8 @@ describe Tudu::Tasks do
         expected: [
           Tudu::Task.new('doings', 'task1'),
           Tudu::Task.new('doings', 'task2'),
-          Tudu::Task.new('doings', 'task3'),
-          ],
+          Tudu::Task.new('doings', 'task3')
+          ]
       },
       {
         case_no: 3,
@@ -235,9 +235,9 @@ describe Tudu::Tasks do
         expected: [
           Tudu::Task.new('dones', 'task1'),
           Tudu::Task.new('dones', 'task2'),
-          Tudu::Task.new('dones', 'task3'),
-          ],
-      },
+          Tudu::Task.new('dones', 'task3')
+          ]
+      }
     ]
 
     cases.each do |c|
@@ -282,9 +282,9 @@ describe Tudu::Tasks do
         expected: [
           Tudu::Task.new('doings', 'task1'),
           Tudu::Task.new('doings', 'task2'),
-          Tudu::Task.new('doings', 'task3'),
-          ],
-      },
+          Tudu::Task.new('doings', 'task3')
+          ]
+      }
     ]
 
     cases.each do |c|
@@ -329,9 +329,9 @@ describe Tudu::Tasks do
         expected: [
           Tudu::Task.new('dones', 'task1'),
           Tudu::Task.new('dones', 'task2'),
-          Tudu::Task.new('dones', 'task3'),
-          ],
-      },
+          Tudu::Task.new('dones', 'task3')
+          ]
+      }
     ]
 
     cases.each do |c|
@@ -399,7 +399,7 @@ describe Tudu::Tasks do
         texts: %w(task1 task2 task3),
         search_name: 'task4',
         expected: nil
-      },
+      }
     ]
 
     cases.each do |c|
@@ -446,7 +446,7 @@ describe Tudu::Tasks do
         expected: [
           Tudu::Task.new('todos', 'task2'),
           Tudu::Task.new('todos', 'task3'),
-          Tudu::Task.new('doings', 'task1'),
+          Tudu::Task.new('doings', 'task1')
         ]
       },
       {
@@ -458,7 +458,7 @@ describe Tudu::Tasks do
         expected: [
           Tudu::Task.new('doings', 'task1'),
           Tudu::Task.new('doings', 'task2'),
-          Tudu::Task.new('doings', 'task3'),
+          Tudu::Task.new('doings', 'task3')
         ]
       },
       {
@@ -470,7 +470,7 @@ describe Tudu::Tasks do
         expected: [
           Tudu::Task.new('todos', 'task1'),
           Tudu::Task.new('todos', 'task2'),
-          Tudu::Task.new('todos', 'task3'),
+          Tudu::Task.new('todos', 'task3')
         ]
       },
       {
@@ -482,7 +482,7 @@ describe Tudu::Tasks do
         expected: [
           Tudu::Task.new('dones', 'task1'),
           Tudu::Task.new('dones', 'task2'),
-          Tudu::Task.new('dones', 'task3'),
+          Tudu::Task.new('dones', 'task3')
         ]
       },
       {
@@ -494,7 +494,7 @@ describe Tudu::Tasks do
         expected: [
           Tudu::Task.new('todos', 'task2'),
           Tudu::Task.new('todos', 'task3'),
-          Tudu::Task.new('doings', 'task1'),
+          Tudu::Task.new('doings', 'task1')
         ]
       },
       {
@@ -506,7 +506,7 @@ describe Tudu::Tasks do
         expected: [
           Tudu::Task.new('todos', 'task2'),
           Tudu::Task.new('todos', 'task3'),
-          Tudu::Task.new('doings', 'task1'),
+          Tudu::Task.new('doings', 'task1')
         ]
       },
       {
@@ -518,10 +518,9 @@ describe Tudu::Tasks do
         expected: [
           Tudu::Task.new('doings', 'task1'),
           Tudu::Task.new('doings', 'task2'),
-          Tudu::Task.new('doings', 'task3'),
+          Tudu::Task.new('doings', 'task3')
         ]
-      },
-
+      }
     ]
 
     cases.each do |c|
@@ -566,7 +565,7 @@ describe Tudu::Tasks do
         expected: [
           Tudu::Task.new('todos', 'task3'),
           Tudu::Task.new('doings', 'task2'),
-          Tudu::Task.new('dones', 'task1'),
+          Tudu::Task.new('dones', 'task1')
         ]
       },
       {
@@ -575,7 +574,7 @@ describe Tudu::Tasks do
         task_names: ['task1'],
         choose: 'task1',
         expected: [
-          Tudu::Task.new('dones', 'task1'),
+          Tudu::Task.new('dones', 'task1')
         ]
       },
       {
@@ -584,9 +583,9 @@ describe Tudu::Tasks do
         task_names: ['task1'],
         choose: '',
         expected: [
-          Tudu::Task.new('todos', 'task1'),
+          Tudu::Task.new('todos', 'task1')
         ]
-      },
+      }
     ]
 
     cases.each do |c|
@@ -660,9 +659,9 @@ describe Tudu::Tasks do
         task_names2: 'task_name1',
         task_names3: nil,
         expected: [
-          Tudu::Task.new('todos', 'task_name1'),
+          Tudu::Task.new('todos', 'task_name1')
         ]
-      },
+      }
     ]
 
     cases.each do |c|
@@ -702,22 +701,22 @@ describe Tudu::Tasks do
         case_title: 'single remove',
         add_tasks: ['task_name'],
         remove_tasks: ['task_name'],
-        expected_tasks: [],
+        expected_tasks: []
       },
       {
         case_no: 2,
         case_title: 'multi remove',
         add_tasks: %w(task_name1 task_name2 task_name3),
         remove_tasks: %w(task_name1 task_name2 task_name3),
-        expected_tasks: [],
+        expected_tasks: []
       },
       {
         case_no: 3,
         case_title: 'not remove',
         add_tasks: ['task_name'],
         remove_tasks: ['invalid name'],
-        expected_tasks: [Tudu::Task.new('todos', 'task_name')],
-      },
+        expected_tasks: [Tudu::Task.new('todos', 'task_name')]
+      }
     ]
 
     cases.each do |c|
@@ -759,11 +758,11 @@ describe Tudu::Tasks do
         tasks: [
           Tudu::Task.new('doings', 'task1_1'),
           Tudu::Task.new('doings', 'task1_2'),
-          Tudu::Task.new('doings', 'task3'),
+          Tudu::Task.new('doings', 'task3')
           ],
         filter_word: 'task1_1',
-        expected: [Tudu::Task.new('doings', 'task1_1')],
-      },
+        expected: [Tudu::Task.new('doings', 'task1_1')]
+      }
     ]
 
     cases.each do |c|
@@ -802,7 +801,7 @@ describe Tudu::Tasks do
         todos: %w(task5 task6),
         doings: %w(task3 task4),
         dones: %w(task1 task2),
-        expected: '2/6|===>       |33%',
+        expected: '2/6|===>       |33%'
       },
       {
         case_no: 2,
@@ -810,7 +809,7 @@ describe Tudu::Tasks do
         todos: %w(task3 task4),
         doings: %w(task1 task2),
         dones: [],
-        expected: '0/4|>          |0%',
+        expected: '0/4|>          |0%'
       },
       {
         case_no: 3,
@@ -818,8 +817,8 @@ describe Tudu::Tasks do
         todos: [],
         doings: [],
         dones: %w(task1 task2),
-        expected: '2/2|==========>|100%',
-      },
+        expected: '2/2|==========>|100%'
+      }
     ]
 
     cases.each do |c|

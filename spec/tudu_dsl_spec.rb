@@ -34,7 +34,7 @@ describe Tudu::Dsl do
         case_title: 'invalid type',
         input_type: :invalid,
         expected: :none
-      },
+      }
     ]
 
     cases.each do |c|
@@ -85,7 +85,7 @@ describe Tudu::Dsl do
         case_title: 'invalid type nil',
         input_type: nil,
         expected: []
-      },
+      }
     ]
 
     cases.each do |c|
@@ -116,5 +116,4 @@ describe Tudu::Dsl do
       end
     end
   end
-
 end

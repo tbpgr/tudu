@@ -23,19 +23,19 @@ module Tudu
 
     # == initialize Dsl
     # === Params
-    #- _target_type: target notice type
-    def target_type(_target_type)
-      return if _target_type.nil?
-      return unless [String, Symbol].include?(_target_type.class)
-      _target_type = _target_type.to_sym if _target_type.instance_of? String
-      return unless TARGET_TYPES.include? _target_type
-      @_target_type = _target_type
+    #- target_type: target notice type
+    def target_type(target_type)
+      return if target_type.nil?
+      return unless [String, Symbol].include?(target_type.class)
+      target_type = target_type.to_sym if target_type.instance_of? String
+      return unless TARGET_TYPES.include? target_type
+      @_target_type = target_type
     end
 
-    def targets(_targets)
-      return if _targets.nil?
-      return unless _targets.instance_of? Array
-      @_targets = _targets
+    def targets(target_type)
+      return if target_type.nil?
+      return unless target_type.instance_of? Array
+      @_targets = target_type
     end
   end
 end

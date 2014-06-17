@@ -200,13 +200,13 @@ module Tudu
       end
 
       def doings_to_dones
-        _doings = doings
-        if _doings.size == 0
+        tmp_doings = doings
+        if tmp_doings.size == 0
           puts 'there is no doing task.before done, you must choose task.'
           return false
         end
         write_doing('')
-        write_done(_doings.first.name)
+        write_done(tmp_doings.first.name)
         true
       end
 
@@ -227,20 +227,20 @@ module Tudu
       end
 
       def todos_to_doings
-        _todos = todos
-        return if finish?(_todos)
-        deleted_todos = _todos.dup
+        tmp_todos = todos
+        return if finish?(tmp_todos)
+        deleted_todos = tmp_todos.dup
         deleted_todos.delete_at 0
         File.open(TuduPaths::TUDU_TODOS_FILE_PATH, 'w:UTF-8') do |f|
           deleted_todos.each { |task|f.puts task.name }
         end
         File.open(TuduPaths::TUDU_DOINGS_FILE_PATH, 'w:UTF-8') do |f|
-          f.puts _todos.first.name
+          f.puts tmp_todos.first.name
         end
       end
 
-      def finish?(_todos)
-        return false unless _todos.size == 0
+      def finish?(tmp_todos)
+        return false unless tmp_todos.size == 0
         puts 'All Tasks Finish!!' if doings.size == 0
         true
       end

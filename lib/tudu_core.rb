@@ -2,15 +2,17 @@
 require 'tudu/version'
 require 'tasks'
 require 'highline'
+require 'tudu_file_keys'
+require 'tudu_paths'
 
 module Tudu
   # Tudu::Core
   class Core
     # == generate files [Tudufile, todos, doings, dones]
     def init
-      Dir.mkdir Tudu::Tasks::TUDU_DIR unless File.exist? Tudu::Tasks::TUDU_DIR
-      Tudu::Tasks::TUDU_KEYS.each do |key|
-        File.open("./tudu/#{Tudu::Tasks::INIT_FILES[key]}", 'w:UTF-8') { |f|f.print Tudu::Tasks::INIT_FILES_TEMPLATE[key] }
+      Dir.mkdir TuduPaths::TUDU_DIR unless File.exist? TuduPaths::TUDU_DIR
+      TuduFileKeys::TUDU_KEYS.each do |key|
+        File.open("./tudu/#{TuduPaths::INIT_FILES[key]}", 'w:UTF-8') { |f|f.print Templates::INIT_FILES_TEMPLATE[key] }
       end
     end
 
@@ -18,28 +20,28 @@ module Tudu
     # === Params
     #- task_names : add task name list
     def add(*task_names)
-      Tudu::Tasks.add(*task_names)
+      Tasks.add(*task_names)
     end
 
     # == remove task to todo
     # === Params
     #- task_names : remove task name list
     def remove(*task_names)
-      Tudu::Tasks.remove(*task_names)
+      Tasks.remove(*task_names)
     end
 
     # == choose todo => doing task
     # === Params
     #- task_name : target task name
     def choose(task_name)
-      Tudu::Tasks.choose task_name
+      Tasks.choose task_name
     end
 
     # == doing to done
     #- if doings size == 0, nothing todo.
     #- after move doing to done, next todo move to doing.
     def done
-      Tudu::Tasks.done
+      Tasks.done
     end
 
     # == search tasks
@@ -80,7 +82,7 @@ module Tudu
     # === Returns
     # return progress
     def progress
-      Tudu::Tasks.progress
+      Tasks.progress
     end
 
     alias_method :now, :doings
@@ -112,15 +114,15 @@ module Tudu
     end
 
     def todos_task(search_word)
-      Tudu::Tasks.filter_tasks(Tudu::Tasks.todos, search_word)
+      Tasks.filter_tasks(Tasks.todos, search_word)
     end
 
     def doings_task(search_word)
-      Tudu::Tasks.filter_tasks(Tudu::Tasks.doings, search_word)
+      Tasks.filter_tasks(Tasks.doings, search_word)
     end
 
     def dones_task(search_word)
-      Tudu::Tasks.filter_tasks(Tudu::Tasks.dones, search_word)
+      Tasks.filter_tasks(Tasks.dones, search_word)
     end
   end
 end

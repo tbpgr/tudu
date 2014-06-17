@@ -1,6 +1,9 @@
 # encoding: utf-8
 require 'spec_helper'
 require 'tudu_core'
+require 'tudu_paths'
+require 'tudu_templates'
+require 'tasks'
 
 describe Tudu::Core do
   context :init do
@@ -9,16 +12,16 @@ describe Tudu::Core do
         case_no: 1,
         case_title: 'valid case',
         expected_files: [
-          Tudu::Tasks::TUDU_FILE,
-          Tudu::Tasks::TUDU_TODOS_FILE,
-          Tudu::Tasks::TUDU_DOINGS_FILE,
-          Tudu::Tasks::TUDU_DONES_FILE
+          Tudu::TuduPaths::TUDU_FILE,
+          Tudu::TuduPaths::TUDU_TODOS_FILE,
+          Tudu::TuduPaths::TUDU_DOINGS_FILE,
+          Tudu::TuduPaths::TUDU_DONES_FILE
         ],
         expected_contents: [
-          Tudu::Tasks::TUDU_FILE_TEMPLATE,
-          Tudu::Tasks::TUDU_TODOS_FILE_TEMPLATE,
-          Tudu::Tasks::TUDU_DOINGS_FILE_TEMPLATE,
-          Tudu::Tasks::TUDU_DONES_FILE_TEMPLATE
+          Tudu::Templates::TUDU_FILE_TEMPLATE,
+          Tudu::Templates::TUDU_TODOS_FILE_TEMPLATE,
+          Tudu::Templates::TUDU_DOINGS_FILE_TEMPLATE,
+          Tudu::Templates::TUDU_DONES_FILE_TEMPLATE
         ],
       },
     ]
@@ -517,9 +520,9 @@ describe Tudu::Core do
           tudu_core.choose c[:choose]
 
           # -- then --
-          actual_doings = File.read("./tudu/#{Tudu::Tasks::TUDU_DOINGS_FILE}")
+          actual_doings = File.read("./tudu/#{Tudu::TuduPaths::TUDU_DOINGS_FILE}")
           expect(actual_doings).to eq(c[:expected_doings])
-          actual_todos = File.read("./tudu/#{Tudu::Tasks::TUDU_TODOS_FILE}")
+          actual_todos = File.read("./tudu/#{Tudu::TuduPaths::TUDU_TODOS_FILE}")
           expect(actual_todos).to eq(c[:expected_todos])
         ensure
           case_after c
@@ -583,9 +586,9 @@ describe Tudu::Core do
           tudu_core.done
 
           # -- then --
-          actual_doings = File.read(Tudu::Tasks::TUDU_DOINGS_FILE_PATH)
+          actual_doings = File.read(Tudu::TuduPaths::TUDU_DOINGS_FILE_PATH)
           expect(actual_doings).to eq(c[:expected_doings])
-          actual_dones = File.read(Tudu::Tasks::TUDU_DONES_FILE_PATH)
+          actual_dones = File.read(Tudu::TuduPaths::TUDU_DONES_FILE_PATH)
           expect(actual_dones).to eq(c[:expected_done])
         ensure
           case_after c

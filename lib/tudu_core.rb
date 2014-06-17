@@ -12,7 +12,9 @@ module Tudu
     def init
       Dir.mkdir TuduPaths::TUDU_DIR unless File.exist? TuduPaths::TUDU_DIR
       TuduFileKeys::TUDU_KEYS.each do |key|
-        File.open("./tudu/#{TuduPaths::INIT_FILES[key]}", 'w:UTF-8') { |f|f.print Templates::INIT_FILES_TEMPLATE[key] }
+        File.open("./tudu/#{TuduPaths::INIT_FILES[key]}", 'w:UTF-8') do |f|
+          f.print Templates::INIT_FILES_TEMPLATE[key]
+        end
       end
     end
 
@@ -49,12 +51,12 @@ module Tudu
     #- search_word : search word. enable regexp.
     #- options : options.
     def tasks(search_word, options)
-      todo_list = todos search_word
-      doing_list = doings search_word
-      done_list = dones search_word
-      todo_list, doing_list, done_list = coloring(options, todo_list, doing_list, done_list)
-      categorise(options, todo_list, doing_list, done_list)
-      todo_list + doing_list + done_list
+      todo_s = todos search_word
+      doing_s = doings search_word
+      done_s = dones search_word
+      todo_s, doing_s, done_s = coloring(options, todo_s, doing_s, done_s)
+      categorise(options, todo_s, doing_s, done_s)
+      todo_s + doing_s + done_s
     end
 
     # == search todos

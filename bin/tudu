@@ -5,6 +5,7 @@ require 'tudu/version'
 require 'tudu_core'
 require 'thor'
 
+# rubocop:disable LineLength
 module Tudu
   # = Tudu CLI
   class CLI < Thor
@@ -78,3 +79,4 @@ module Tudu
   end
 end
 Tudu::CLI.start(ARGV)
+# rubocop:enable LineLength

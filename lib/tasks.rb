@@ -16,7 +16,9 @@ module Tudu
             puts "#{task_name} is already exists."
             next
           end
-          File.open(TuduPaths::TUDU_TODOS_FILE_PATH, 'a:UTF-8') { |f|f.puts task_name }
+          File.open(TuduPaths::TUDU_TODOS_FILE_PATH, 'a:UTF-8') do |f|
+            f.puts task_name
+          end
           puts "complete add todo '#{task_name}' to tudu/todos"
         end
       end
@@ -39,7 +41,7 @@ module Tudu
         return if when_choose_no_task?(task, task_name)
         return unless when_choose_type_is_todo?(task, task_name)
         remove task_name
-        File.open(TuduPaths::TUDU_DOINGS_FILE_PATH, 'w:UTF-8') { |f|f.puts task_name }
+        write_doing(task_name)
         puts "complete add doings '#{task_name}'"
       end
 
@@ -117,7 +119,7 @@ module Tudu
       def progress
         total_count = get_tasks.size
         dones_count = dones.size
-        percent = total_count == 0 ? 0 : (dones_count.to_f / total_count.to_f * 100).round
+        percent = total_count == 0 ? 0 : percentage(dones_count, total_count)
         prefix = "#{dones_count}/#{total_count}|"
         done_bar = '=' * (percent / 10)
         rest_bar = ' ' * (10 - (percent / 10))
@@ -127,6 +129,10 @@ module Tudu
       end
 
       private
+
+      def percentage(base, total)
+        (base.to_f / total.to_f * 100).round
+      end
 
       def get_first_todo_name_if_nil_or_empty(task_name)
         task_name.nil? || task_name.empty? ? todos.first.name : task_name
@@ -140,7 +146,9 @@ module Tudu
 
       def all_tasks
         tasks = []
-        TuduPaths::TASK_FILES.each_value { |each_type|tasks += get_each_tasks(each_type) }
+        TuduPaths::TASK_FILES.each_value do |each_type|
+          tasks += get_each_tasks(each_type)
+        end
         tasks
       end
 
@@ -187,7 +195,7 @@ module Tudu
 
       def when_choose_type_is_todo?(task, task_name)
         return true if task.todo?
-        puts "#{task_name} is not exists in todos. #{task_name} in #{task.type}"
+        puts "#{task_name} is not exists in todos. #{task_name} in #{task.type}" # rubocop:disable LineLength
         false
       end
 
@@ -197,9 +205,25 @@ module Tudu
           puts 'there is no doing task.before done, you must choose task.'
           return false
         end
-        File.open(TuduPaths::TUDU_DOINGS_FILE_PATH, 'w:UTF-8') { |f|f.print '' }
-        File.open(TuduPaths::TUDU_DONES_FILE_PATH, 'a:UTF-8') { |f|f.puts _doings.first.name }
+        write_doing('')
+        write_done(_doings.first.name)
         true
+      end
+
+      def write_doing(text)
+        File.open(TuduPaths::TUDU_DOINGS_FILE_PATH, 'w:UTF-8') do |f|
+          if text.empty?
+            f.print(text)
+          else
+            f.puts text
+          end
+        end
+      end
+
+      def write_done(text)
+        File.open(TuduPaths::TUDU_DONES_FILE_PATH, 'a:UTF-8') do |f|
+          f.puts text
+        end
       end
 
       def todos_to_doings
@@ -210,7 +234,9 @@ module Tudu
         File.open(TuduPaths::TUDU_TODOS_FILE_PATH, 'w:UTF-8') do |f|
           deleted_todos.each { |task|f.puts task.name }
         end
-        File.open(TuduPaths::TUDU_DOINGS_FILE_PATH, 'w:UTF-8') { |f|f.puts _todos.first.name }
+        File.open(TuduPaths::TUDU_DOINGS_FILE_PATH, 'w:UTF-8') do |f|
+          f.puts _todos.first.name
+        end
       end
 
       def finish?(_todos)

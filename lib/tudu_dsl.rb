@@ -26,7 +26,7 @@ module Tudu
     #- _target_type: target notice type
     def target_type(_target_type)
       return if _target_type.nil?
-      return unless _target_type.instance_of?(String) || _target_type.instance_of?(Symbol)
+      return unless [String, Symbol].include?(_target_type.class)
       _target_type = _target_type.to_sym if _target_type.instance_of? String
       return unless TARGET_TYPES.include? _target_type
       @_target_type = _target_type

@@ -152,7 +152,7 @@ module Tudu
         tasks
       end
 
-      def has_task?(tasks, task_name)
+      def include_task?(tasks, task_name)
         tasks.include? task_name
       end
 
@@ -160,7 +160,7 @@ module Tudu
         can_find = false
         TuduPaths::TASK_FILES.each_value do |rf|
           tasks = get_tasks_from_file(rf)
-          next unless has_task?(tasks, task_name)
+          next unless include_task?(tasks, task_name)
           remove_task(tasks, task_name, "./#{TuduPaths::TUDU_DIR}/#{rf}")
           can_find = true
           break

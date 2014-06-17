@@ -4,7 +4,7 @@ require 'tudu_core'
 require 'tasks'
 require 'task'
 
-# rubocop:disable LineLength
+# rubocop:disable LineLength, UnusedMethodArgument
 describe Tudu::Tasks do
 
   context :todo? do
@@ -855,4 +855,4 @@ describe Tudu::Tasks do
     end
   end
 end
-# rubocop:enable LineLength
+# rubocop:enable LineLength, UnusedMethodArgument

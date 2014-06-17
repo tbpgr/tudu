@@ -5,7 +5,7 @@ require 'tudu_paths'
 require 'tudu_templates'
 require 'tasks'
 
-# rubocop:disable LineLength
+# rubocop:disable LineLength, UnusedMethodArgument
 describe Tudu::Core do
   context :init do
     cases = [
@@ -608,4 +608,4 @@ describe Tudu::Core do
     end
   end
 end
-# rubocop:enable LineLength
+# rubocop:enable LineLength, UnusedMethodArgument

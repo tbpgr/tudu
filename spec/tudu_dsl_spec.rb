@@ -2,6 +2,7 @@
 require 'spec_helper'
 require 'tudu_dsl'
 
+# rubocop:disable UnusedMethodArgument
 describe Tudu::Dsl do
   context :target_type do
     cases = [
@@ -117,3 +118,4 @@ describe Tudu::Dsl do
     end
   end
 end
+# rubocop:enable UnusedMethodArgument

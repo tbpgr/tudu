@@ -4,6 +4,7 @@ require 'tasks'
 require 'highline'
 require 'tudu_file_keys'
 require 'tudu_paths'
+require 'tudu_templates'
 
 module Tudu
   # Tudu::Core
@@ -13,7 +14,7 @@ module Tudu
       Dir.mkdir TuduPaths::TUDU_DIR unless File.exist? TuduPaths::TUDU_DIR
       TuduFileKeys::TUDU_KEYS.each do |key|
         File.open("./tudu/#{TuduPaths::INIT_FILES[key]}", 'w:UTF-8') do |f|
-          f.print Templates::INIT_FILES_TEMPLATE[key]
+          f.print Tudu::Templates::INIT_FILES_TEMPLATE[key]
         end
       end
     end

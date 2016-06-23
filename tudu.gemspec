@@ -19,6 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_runtime_dependency 'thor', '~> 0.18.1'
+  spec.add_runtime_dependency 'highline', "~> 1.6.20"
 
   spec.add_development_dependency 'rspec', '~> 2.14.1'
   spec.add_development_dependency 'simplecov', '~> 0.8.2'
